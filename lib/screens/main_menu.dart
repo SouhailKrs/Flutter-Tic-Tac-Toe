@@ -17,7 +17,10 @@ class MainMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ParentContainer(
+    return
+      Scaffold(
+        body:
+      ParentContainer(
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -58,7 +61,7 @@ class MainMenu extends StatelessWidget {
           ),
         ),
 
-
+      ),
     );
   }
 }

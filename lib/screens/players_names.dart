@@ -35,42 +35,50 @@ class PlayerNames extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  ParentContainer(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            'Enter Player Names',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 20,
-              fontFamily: GoogleFonts.permanentMarker().fontFamily,
-            ),
-          ),
-          SizedBox(
-            height: 15.h,
-          ),
-          buildTextField('Player 1', Icons.circle_outlined, true),
-          SizedBox(
-            height: 2.h,
-          ),
-          buildTextField('Player 2', Icons.close_outlined, false),
-          SizedBox(
-            height: 2.h,
-          ),
-          Container(
-            width: double.infinity,
-            child: ButtonWidget(onPressed: (){
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const GameScreen()));
+    return  Scaffold(
+    body:
 
-            }, text: 'Start Game'
+
+    SingleChildScrollView(
+      child: ParentContainer(
+
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Enter Player Names',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontFamily: GoogleFonts.permanentMarker().fontFamily,
+                ),
+              ),
+              SizedBox(
+                height: 15.h,
+              ),
+              buildTextField('Player 1', Icons.circle_outlined, true),
+              SizedBox(
+                height: 2.h,
+              ),
+              buildTextField('Player 2', Icons.close_outlined, false),
+              SizedBox(
+                height: 2.h,
+              ),
+              Container(
+                width: double.infinity,
+                child: ButtonWidget(onPressed: (){
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const GameScreen()));
+
+                }, text: 'Start Game'
+      )
+              )
+            ],
+          ),
+        ),
     )
-          )
-        ],
-      ),
     );
   }
 }

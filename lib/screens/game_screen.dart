@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_tic_tac_toe/screens/colors.dart';
+import 'package:flutter_tic_tac_toe/widgets/button_widget.dart';
 import 'package:flutter_tic_tac_toe/widgets/parent_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
@@ -41,16 +42,33 @@ String winner = '';
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("Game Over"),
-          content: Text(message),
+          backgroundColor: GameColors.kBackgroundDarker,
+          elevation: 0,
+          title: Text("Game Over",
+
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+            fontFamily: GoogleFonts.permanentMarker().fontFamily,
+          ),
+
+          ),
+          content: Text(message,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+            fontFamily: GoogleFonts.permanentMarker().fontFamily,
+          ),
+          ),
           actions: [
-            ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).pop(); // Close the dialog
-                _resetGame(); // Reset the game after closing the dialog
-              },
-              child: Text("OK"),
-            ),
+        ButtonWidget(onPressed: () {
+          Navigator.of(context).pop();
+       //   _resetGame();
+        },
+        text: 'Play Again',
+        ),
+
+
           ],
         );
       },
@@ -173,7 +191,10 @@ String winner = '';
 
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: _resetGame,
+              onPressed:  (){
+
+                _showGameResultDialog("It's a draw!");
+              },
               child: const Text('Reset Game'),
             ),
           ],
