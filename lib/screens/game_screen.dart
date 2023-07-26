@@ -103,6 +103,7 @@ String winner = '';
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topLeft,
@@ -125,47 +126,50 @@ String winner = '';
             SizedBox(
               height: 15.h,
             ),
-            GridView.builder(
-              padding: const EdgeInsets.all(5.0),
-              shrinkWrap: true,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
-                crossAxisSpacing: 10.0,
-                mainAxisSpacing: 10.0,
-              ),
-              itemBuilder: (context, index) {
-                int row = index ~/ 3;
-                int col = index % 3;
+            Container(
+              margin:  EdgeInsets.all(4.0.w),
+              child: GridView.builder(
+                padding: const EdgeInsets.all(5.0),
+                shrinkWrap: true,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  crossAxisSpacing: 10.0,
+                  mainAxisSpacing: 10.0,
+                ),
+                itemBuilder: (context, index) {
+                  int row = index ~/ 3;
+                  int col = index % 3;
 
-                return GestureDetector(
-                  onTap: () => _onCellTap(row, col),
-                  child: Container(
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(10),
-                        topRight: Radius.circular(10),
-                        bottomLeft: Radius.circular(10),
-                        bottomRight: Radius.circular(10),
+                  return GestureDetector(
+                    onTap: () => _onCellTap(row, col),
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(10),
+                          topRight: Radius.circular(10),
+                          bottomLeft: Radius.circular(10),
+                          bottomRight: Radius.circular(10),
+                        ),
+                      ),
+                      child: Center(
+                        child: Text(
+                          board[row][col],
+                          style: TextStyle(
+                              fontSize: 50,
+                              fontFamily:
+                                  GoogleFonts.permanentMarker().fontFamily,
+                              fontWeight: FontWeight.bold,
+                              color: board[row][col] == 'X'
+                                  ? GameColors.kBackground
+                                  : GameColors.kPurple),
+                        ),
                       ),
                     ),
-                    child: Center(
-                      child: Text(
-                        board[row][col],
-                        style: TextStyle(
-                            fontSize: 50,
-                            fontFamily:
-                                GoogleFonts.permanentMarker().fontFamily,
-                            fontWeight: FontWeight.bold,
-                            color: board[row][col] == 'X'
-                                ? GameColors.kBackground
-                                : GameColors.kPurple),
-                      ),
-                    ),
-                  ),
-                );
-              },
-              itemCount: 9,
+                  );
+                },
+                itemCount: 9,
+              ),
             ),
             const SizedBox(height: 20),
             Text('Player $currentPlayer turn',
