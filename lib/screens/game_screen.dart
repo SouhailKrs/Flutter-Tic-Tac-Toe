@@ -89,7 +89,9 @@ class _GameScreenState extends State<GameScreen> {
             ScoreBoard(
               playerXScore: _checkWin('X') ? 1 : 0,
               playerOScore: _checkWin('O') ? 1 : 0,
+              isTurn: currentPlayer == 'X',
             ),
+
             SizedBox(
               height: 15.h,
             ),
@@ -136,12 +138,7 @@ class _GameScreenState extends State<GameScreen> {
               itemCount: 9,
             ),
             const SizedBox(height: 20),
-            Text('Player $currentPlayer turn',
-                style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: GoogleFonts.permanentMarker().fontFamily,
-                    color: GameColors.kWhitish)),
+
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: _resetGame,
