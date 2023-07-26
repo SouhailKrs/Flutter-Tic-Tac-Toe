@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tic_tac_toe/screens/colors.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class GameScreen extends StatefulWidget {
   const GameScreen({Key? key}) : super(key: key);
@@ -114,11 +116,12 @@ class _GameScreenState extends State<GameScreen> {
                       child: Text(
                         board[row][col],
                         style: TextStyle(
-                          fontSize: 40,
+                          fontSize: 50,
+                          fontFamily: GoogleFonts.permanentMarker().fontFamily,
                           fontWeight: FontWeight.bold,
                           color: board[row][col] == 'X'
-                              ? Color(0xff28313D)
-                              : Color(0xffaf73fd),
+                              ? GameColors.kBackground
+                              :  GameColors.kPurple
                         ),
                       ),
                     ),
