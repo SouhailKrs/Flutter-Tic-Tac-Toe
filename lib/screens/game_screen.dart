@@ -136,15 +136,12 @@ class _GameScreenState extends State<GameScreen> {
               itemCount: 9,
             ),
             const SizedBox(height: 20),
-            if (_checkWin('X'))
-              const Text('Player X wins!',
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-            if (_checkWin('O'))
-              const Text('Player O wins!',
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-            if (!_checkWin('X') && !_checkWin('O') && _checkDraw())
-              const Text('It\'s a draw!',
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+            Text('Player $currentPlayer turn',
+                style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: GoogleFonts.permanentMarker().fontFamily,
+                    color: GameColors.kWhitish)),
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: _resetGame,
