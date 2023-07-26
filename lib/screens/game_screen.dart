@@ -15,16 +15,44 @@ class GameScreen extends StatefulWidget {
 class _GameScreenState extends State<GameScreen> {
   List<List<String>> board = List.generate(3, (_) => List.filled(3, ''));
   String currentPlayer = 'X';
-
+String winner = '';
   void _onCellTap(int row, int col) {
     if (board[row][col].isEmpty) {
       setState(() {
         board[row][col] = currentPlayer;
-        currentPlayer = currentPlayer == 'X' ? 'O' : 'X';
+        if (_checkWin(currentPlayer)) {
+          winner = currentPlayer;
+          _showGameResultDialog("Player $currentPlayer wins!");
+        } else if (_checkDraw()) {
+          winner = 'draw';
+          _showGameResultDialog("It's a draw!");
+        } else {
+          currentPlayer = currentPlayer == 'X' ? 'O' : 'X';
+        }
       });
     }
   }
 
+  void _showGameResultDialog(String message) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Game Over"),
+          content: Text(message),
+          actions: [
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the dialog
+                _resetGame(); // Reset the game after closing the dialog
+              },
+              child: Text("OK"),
+            ),
+          ],
+        );
+      },
+    );
+  }
   bool _checkWin(String player) {
     for (int i = 0; i < 3; i++) {
       if (board[i][0] == player &&
@@ -66,8 +94,10 @@ class _GameScreenState extends State<GameScreen> {
     setState(() {
       board = List.generate(3, (_) => List.filled(3, ''));
       currentPlayer = 'X';
+      winner = '';
     });
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -138,6 +168,12 @@ class _GameScreenState extends State<GameScreen> {
               itemCount: 9,
             ),
             const SizedBox(height: 20),
+            Text('Player $currentPlayer turn',
+                style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: GoogleFonts.permanentMarker().fontFamily,
+                    color: GameColors.kWhitish)),
 
             const SizedBox(height: 20),
             ElevatedButton(
