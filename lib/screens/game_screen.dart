@@ -1,5 +1,8 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_tic_tac_toe/screens/colors.dart';
+import 'package:flutter_tic_tac_toe/widgets/parent_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 
@@ -93,27 +96,16 @@ String winner = '';
   void _resetGame() {
     setState(() {
       board = List.generate(3, (_) => List.filled(3, ''));
-      currentPlayer = 'X';
-      winner = '';
-    });
+      currentPlayer = (winner == 'draw') ? ['X', 'O'].elementAt(Random().nextInt(2)) : winner;
+      });
   }
+
 
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              Color(0xff1e242d),
-              Color(0xff28313D),
-            ],
-          ),
-        ),
+      body:ParentContainer(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
