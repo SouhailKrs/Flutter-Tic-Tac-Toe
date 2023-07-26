@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tic_tac_toe/screens/colors.dart';
+import 'package:flutter_tic_tac_toe/screens/players_names.dart';
+import 'package:flutter_tic_tac_toe/widgets/parent_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 
@@ -15,19 +17,7 @@ class MainMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              Color(0xff1e242d),
-              Color(0xff28313D),
-            ],
-          ),
-        ),
+    return ParentContainer(
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -54,7 +44,7 @@ class MainMenu extends StatelessWidget {
               MainMenuButtons(
                 btnText: 'Multiplayer',
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const GameScreen()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const PlayerNames()));
                 },
               ),
               SizedBox(height: 2.h),
@@ -67,7 +57,7 @@ class MainMenu extends StatelessWidget {
             ],
           ),
         ),
-      ),
+
 
     );
   }

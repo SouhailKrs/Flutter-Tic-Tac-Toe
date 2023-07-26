@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tic_tac_toe/screens/game_screen.dart';
 import 'package:flutter_tic_tac_toe/screens/main_menu.dart';
-import 'package:flutter_tic_tac_toe/screens/players_names.dart';
 import 'package:sizer/sizer.dart';
 
 void main() {
@@ -23,7 +22,7 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          home:  PlayerNames(),
+          home:  MainMenu(),
         );
       },
     );
