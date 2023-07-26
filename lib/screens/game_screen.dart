@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tic_tac_toe/screens/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sizer/sizer.dart';
+
+import '../widgets/scoreboard.dart';
 
 class GameScreen extends StatefulWidget {
   const GameScreen({Key? key}) : super(key: key);
@@ -69,9 +72,6 @@ class _GameScreenState extends State<GameScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-
-
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
@@ -80,14 +80,19 @@ class _GameScreenState extends State<GameScreen> {
             colors: [
               Color(0xff1e242d),
               Color(0xff28313D),
-
-
             ],
           ),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            ScoreBoard(
+              playerXScore: _checkWin('X') ? 1 : 0,
+              playerOScore: _checkWin('O') ? 1 : 0,
+            ),
+            SizedBox(
+              height: 15.h,
+            ),
             GridView.builder(
               padding: const EdgeInsets.all(5.0),
               shrinkWrap: true,
@@ -116,13 +121,13 @@ class _GameScreenState extends State<GameScreen> {
                       child: Text(
                         board[row][col],
                         style: TextStyle(
-                          fontSize: 50,
-                          fontFamily: GoogleFonts.permanentMarker().fontFamily,
-                          fontWeight: FontWeight.bold,
-                          color: board[row][col] == 'X'
-                              ? GameColors.kBackground
-                              :  GameColors.kPurple
-                        ),
+                            fontSize: 50,
+                            fontFamily:
+                                GoogleFonts.permanentMarker().fontFamily,
+                            fontWeight: FontWeight.bold,
+                            color: board[row][col] == 'X'
+                                ? GameColors.kBackground
+                                : GameColors.kPurple),
                       ),
                     ),
                   ),
