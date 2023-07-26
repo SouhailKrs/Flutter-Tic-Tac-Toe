@@ -63,7 +63,7 @@ String winner = '';
           actions: [
         ButtonWidget(onPressed: () {
           Navigator.of(context).pop();
-       //   _resetGame();
+         _resetGame();
         },
         text: 'Play Again',
         ),
@@ -181,22 +181,8 @@ String winner = '';
                 itemCount: 9,
               ),
             ),
-            const SizedBox(height: 20),
-            Text('Player $currentPlayer turn',
-                style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: GoogleFonts.permanentMarker().fontFamily,
-                    color: GameColors.kWhitish)),
 
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed:  (){
 
-                _showGameResultDialog("It's a draw!");
-              },
-              child: const Text('Reset Game'),
-            ),
           ],
         ),
       ),

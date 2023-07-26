@@ -43,7 +43,7 @@ class ScoreBoard extends StatelessWidget {
               fontWeight: FontWeight.bold,
               color: playerLabel == 'Player X'
                   ? Colors.blue
-                  : Colors.purple, 
+                  : Colors.purple,
             ),
           ),
           Text(
