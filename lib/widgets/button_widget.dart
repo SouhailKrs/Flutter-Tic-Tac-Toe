@@ -9,11 +9,13 @@ class ButtonWidget extends StatelessWidget {
       {super.key,
       required this.onPressed,
       required this.text,
+      this.isEnabled = true,
       this.winner = "draw"});
 
   final void Function() onPressed;
   final String text;
   final String? winner;
+  final bool isEnabled;
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
@@ -21,11 +23,13 @@ class ButtonWidget extends StatelessWidget {
         onPressed();
       },
       style: ElevatedButton.styleFrom(
-        backgroundColor: winner == "X"
-            ? GameColors.kBlue
-            : winner == "O"
-                ? GameColors.kPurple
-                : GameColors.kForeground,
+        backgroundColor: !isEnabled
+            ? GameColors.kGrey
+            : winner == "X"
+                ? GameColors.kBlue
+                : winner == "O"
+                    ? GameColors.kPurple
+                    : GameColors.kForeground,
         padding: EdgeInsets.symmetric(
           vertical: 2.h,
           horizontal: 5.w,
