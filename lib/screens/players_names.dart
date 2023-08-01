@@ -38,25 +38,34 @@ class PlayerNames extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
    backgroundColor: GameColors.kGradient1,
-          leading: const BackButton(
-            color: Colors.white, // <-- SEE HERE
-          ),
+          leading:  IconButton(onPressed: (){
+
+            Navigator.pop(context);
+
+          }, icon: const Icon(
+
+            Icons.arrow_back_outlined,
+            color: GameColors.kWhitish,
+          ))
         ),
         body: SingleChildScrollView(
           child: ParentContainer(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
+                SizedBox(
+                  height: 20.h,
+                ),
                 Text(
                   'Enter Player Names',
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 20,
+                    fontSize: 20.sp,
                     fontFamily: GoogleFonts.permanentMarker().fontFamily,
                   ),
                 ),
                 SizedBox(
-                  height: 15.h,
+                  height: 7.h,
                 ),
                 buildTextField('Player 1', Icons.circle_outlined, true),
                 SizedBox(

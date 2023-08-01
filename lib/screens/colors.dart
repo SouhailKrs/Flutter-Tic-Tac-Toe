@@ -10,6 +10,6 @@ class GameColors {
 
   static const kGrey = Color(0xff8d95a7);
   static const kGradient1 =   Color(0xff28313D);
-  static const kGradient2 =   Color(0xff28313D);
+  static const kGradient2 =   Color(0xff303b49);
 
 }

@@ -15,14 +15,15 @@ class ParentContainer extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 5.w),
       decoration: const BoxDecoration(
         gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
           colors: [
           GameColors.kGradient1,
           GameColors.kGradient2,
 
 
           ],
+          stops: [0.5, 0.9],
         ),
       ),
       child: child,
