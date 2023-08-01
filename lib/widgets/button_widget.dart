@@ -25,7 +25,7 @@ class ButtonWidget extends StatelessWidget {
             ? GameColors.kBlue
             : winner == "O"
                 ? GameColors.kPurple
-                : GameColors.kGrey,
+                : GameColors.kForeground,
         padding: EdgeInsets.symmetric(
           vertical: 2.h,
           horizontal: 5.w,

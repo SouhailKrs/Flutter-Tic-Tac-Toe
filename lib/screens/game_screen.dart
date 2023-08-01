@@ -42,7 +42,7 @@ String winner = '';
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          backgroundColor: GameColors.kBackgroundDarker,
+          backgroundColor: GameColors.kLighterForeground,
           elevation: 0,
           title: Text("Game Over",
 

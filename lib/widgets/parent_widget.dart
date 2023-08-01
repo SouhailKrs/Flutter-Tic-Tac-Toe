@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tic_tac_toe/screens/colors.dart';
 import 'package:sizer/sizer.dart';
 
 class ParentContainer extends StatelessWidget {
@@ -17,8 +18,10 @@ class ParentContainer extends StatelessWidget {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            Color(0xff1e242d),
-            Color(0xff28313D),
+          GameColors.kGradient1,
+          GameColors.kGradient2,
+
+
           ],
         ),
       ),

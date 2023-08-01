@@ -10,9 +10,9 @@ import 'game_screen.dart';
 class PlayerNames extends StatelessWidget {
   const PlayerNames({super.key});
 
-  Widget buildTextField(String hintText, IconData icon, bool isOne) {
+  Widget buildTextField(String hintText, IconData icon, bool isX) {
     return TextField(
-      cursorColor: isOne ? GameColors.kWhitish : GameColors.kPurple,
+      cursorColor: isX ? GameColors.kWhitish : GameColors.kPurple,
       style: const TextStyle(color: GameColors.kWhitish),
       decoration: InputDecoration(
         filled: true,
@@ -21,13 +21,13 @@ class PlayerNames extends StatelessWidget {
           borderSide: BorderSide.none,
           borderRadius: BorderRadius.all(Radius.circular(3.w)),
         ),
-        fillColor: GameColors.kBackgroundDarker,
+        fillColor: GameColors.kForeground,
         hintText: 'Player 1',
         hintStyle: const TextStyle(color: GameColors.kBackground),
 
         prefixIcon: Icon(
           Icons.close,
-          color: isOne ? GameColors.kWhitish : GameColors.kPurple,
+          color: isX ? GameColors.kBlue : GameColors.kPurple,
         ),
       ),
     );
@@ -35,50 +35,50 @@ class PlayerNames extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-    body:
-
-
-    SingleChildScrollView(
-      child: ParentContainer(
-
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Enter Player Names',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontFamily: GoogleFonts.permanentMarker().fontFamily,
-                ),
-              ),
-              SizedBox(
-                height: 15.h,
-              ),
-              buildTextField('Player 1', Icons.circle_outlined, true),
-              SizedBox(
-                height: 2.h,
-              ),
-              buildTextField('Player 2', Icons.close_outlined, false),
-              SizedBox(
-                height: 2.h,
-              ),
-              Container(
-                width: double.infinity,
-                child: ButtonWidget(onPressed: (){
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const GameScreen()));
-
-                }, text: 'Start Game'
-      )
-              )
-            ],
+    return Scaffold(
+        appBar: AppBar(
+   backgroundColor: GameColors.kGradient1,
+          leading: const BackButton(
+            color: Colors.white, // <-- SEE HERE
           ),
         ),
-    )
-    );
+        body: SingleChildScrollView(
+          child: ParentContainer(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Enter Player Names',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontFamily: GoogleFonts.permanentMarker().fontFamily,
+                  ),
+                ),
+                SizedBox(
+                  height: 15.h,
+                ),
+                buildTextField('Player 1', Icons.circle_outlined, true),
+                SizedBox(
+                  height: 2.h,
+                ),
+                buildTextField('Player 2', Icons.close_outlined, false),
+                SizedBox(
+                  height: 2.h,
+                ),
+                SizedBox(
+                    width: double.infinity,
+                    child: ButtonWidget(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const GameScreen()));
+                        },
+                        text: 'Start Game'))
+              ],
+            ),
+          ),
+        ));
   }
 }

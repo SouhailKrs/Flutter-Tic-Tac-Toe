@@ -19,7 +19,7 @@ class ScoreBoard extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(5.0.w),
       decoration: BoxDecoration(
-        color: GameColors.kBackgroundDarker,
+        color: GameColors.kForeground,
         borderRadius: BorderRadius.circular(3.0.w),
         border: isTurn
             ? playerLabel == 'Player X'
