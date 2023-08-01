@@ -16,20 +16,29 @@ class ButtonWidget extends StatelessWidget {
   final String text;
   final String? winner;
   final bool isEnabled;
+  Color getColor(bool isEnabled, String winner) {
+    if (!isEnabled) {
+      return GameColors.kGrey;
+    } else if (winner == "X") {
+      return GameColors.kBlue;
+    } else if (winner == "O") {
+      return GameColors.kPurple;
+    } else {
+      return GameColors.kForeground;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
-        onPressed();
+        if (isEnabled) {
+          onPressed();
+          print("winner is $winner");
+        }
       },
       style: ElevatedButton.styleFrom(
-        backgroundColor: !isEnabled
-            ? GameColors.kGrey
-            : winner == "X"
-                ? GameColors.kBlue
-                : winner == "O"
-                    ? GameColors.kPurple
-                    : GameColors.kForeground,
+        backgroundColor: getColor(isEnabled, winner!),
         padding: EdgeInsets.symmetric(
           vertical: 2.h,
           horizontal: 5.w,

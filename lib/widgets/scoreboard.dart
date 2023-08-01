@@ -8,21 +8,25 @@ class ScoreBoard extends StatelessWidget {
     super.key,
     required this.playerXScore,
     required this.playerOScore,
-    required this.isTurn,
+    required this.isTurn, required this.playerXName, required this.playerOName,
   });
 
   final int playerXScore;
   final int playerOScore;
   final bool isTurn;
+  final String playerXName;
+  final String playerOName;
 
   Widget _buildPlayerScore(String playerLabel, int score, bool isTurn) {
     return Container(
       padding: EdgeInsets.all(5.0.w),
+      width: 40.0.w,
+      height: 35.0.w,
       decoration: BoxDecoration(
         color: GameColors.kForeground,
         borderRadius: BorderRadius.circular(3.0.w),
         border: isTurn
-            ? playerLabel == 'Player X'
+            ? playerLabel == playerXName
                 ? Border.all(
                     color: GameColors.kBlue,
                     width: 2.0,
@@ -34,14 +38,15 @@ class ScoreBoard extends StatelessWidget {
             : null,
       ),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Text(
             playerLabel,
             style: TextStyle(
-              fontSize: 20,
+              fontSize: 10.sp,
               fontFamily: GoogleFonts.permanentMarker().fontFamily,
               fontWeight: FontWeight.bold,
-              color: playerLabel == 'Player X'
+              color: playerLabel == playerXName
                   ? Colors.blue
                   : Colors.purple,
             ),
@@ -65,8 +70,8 @@ class ScoreBoard extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        _buildPlayerScore('Player X', playerXScore, isTurn),
-        _buildPlayerScore('Player O', playerOScore, !isTurn),
+        _buildPlayerScore(playerXName, playerXScore, isTurn),
+        _buildPlayerScore(playerOName, playerOScore, !isTurn),
       ],
     );
   }

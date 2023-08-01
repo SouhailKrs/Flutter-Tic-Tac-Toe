@@ -15,10 +15,16 @@ class PlayerNames extends HookWidget {
       ValueSetter<String> onChanged, TextEditingController controller) {
     return TextField(
       cursorColor: isX ? GameColors.kWhitish : GameColors.kPurple,
-      style: const TextStyle(color: GameColors.kWhitish),
+      style: TextStyle(
+        color: GameColors.kWhitish,
+      ),
       controller: controller,
       onChanged: onChanged,
+      maxLength: 10,
+      // gide max length indicator
+
       decoration: InputDecoration(
+        counterText: '',
         filled: true,
         //<-- SEE HERE
         border: OutlineInputBorder(
@@ -50,7 +56,6 @@ class PlayerNames extends HookWidget {
 
     return Scaffold(
         appBar: AppBar(
-
             backgroundColor: GameColors.kGradient1,
             leading: IconButton(
                 onPressed: () {
@@ -96,22 +101,44 @@ class PlayerNames extends HookWidget {
                   height: 2.h,
                 ),
                 SizedBox(
-                  width: double.infinity,
-                  child:
+                    width: double.infinity,
+                    child: HookBuilder(builder: (context) {
+                      final isEnabled = useValueListenable(isBtnEnabled);
+                      return ButtonWidget(
+                          isEnabled: isEnabled,
+                          onPressed: () {
+                            // check if names are equal
+                            if (playerXController.text.toLowerCase().trim() ==
+                                playerOController.text.toLowerCase().trim()) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                 SnackBar(
+                                  backgroundColor: GameColors.kForeground,
+                                  content: Text('Please enter different names',
 
-                HookBuilder(builder: (context) {
-                  final isEnabled = useValueListenable(isBtnEnabled);
-                  return ButtonWidget(
-                      isEnabled: isEnabled,
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const GameScreen()));
-                      },
-                      text: 'Start Game');
-                })
-                ),
+                                  style: TextStyle(color: GameColors.kWhitish,
+
+                                  fontFamily: GoogleFonts.permanentMarker().fontFamily,
+                                  ),
+                                  ),
+                                ),
+                              );
+
+                              return;
+                            }
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => GameScreen(
+                                          playerOName: playerOController.text
+                                              .toLowerCase()
+                                              .trim(),
+                                          playerXName: playerXController.text
+                                              .toLowerCase()
+                                              .trim(),
+                                        )));
+                          },
+                          text: 'Start Game');
+                    })),
               ],
             ),
           ),

@@ -7,11 +7,15 @@ import 'package:flutter_tic_tac_toe/widgets/parent_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 
+import '../widgets/alert_dialog.dart';
 import '../widgets/scoreboard.dart';
 
 class GameScreen extends StatefulWidget {
-  const GameScreen({Key? key}) : super(key: key);
-
+  const GameScreen(
+      {Key? key, required this.playerXName, required this.playerOName})
+      : super(key: key);
+  final String playerXName;
+  final String playerOName;
   @override
   GameScreenState createState() => GameScreenState();
 }
@@ -19,17 +23,17 @@ class GameScreen extends StatefulWidget {
 class GameScreenState extends State<GameScreen> {
   List<List<String>> board = List.generate(3, (_) => List.filled(3, ''));
   String currentPlayer = 'X';
-String winner = '';
+  String winner = '';
   void _onCellTap(int row, int col) {
     if (board[row][col].isEmpty) {
       setState(() {
         board[row][col] = currentPlayer;
         if (_checkWin(currentPlayer)) {
           winner = currentPlayer;
-          _showGameResultDialog("Player $currentPlayer wins!");
+          showGameAlertDialog("Player $currentPlayer wins!",context,currentPlayer, _resetGame);
         } else if (_checkDraw()) {
           winner = 'draw';
-          _showGameResultDialog("It's a draw!");
+          showGameAlertDialog("It's a draw!",context,"draw", _resetGame);
         } else {
           currentPlayer = currentPlayer == 'X' ? 'O' : 'X';
         }
@@ -37,44 +41,8 @@ String winner = '';
     }
   }
 
-  void _showGameResultDialog(String message) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          backgroundColor: GameColors.kLighterForeground,
-          elevation: 0,
-          title: Text("Game Over",
-
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 20,
-            fontFamily: GoogleFonts.permanentMarker().fontFamily,
-          ),
-
-          ),
-          content: Text(message,
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 20,
-            fontFamily: GoogleFonts.permanentMarker().fontFamily,
-          ),
-          ),
-          actions: [
-        ButtonWidget(onPressed: () {
-          Navigator.of(context).pop();
-         _resetGame();
-        },
-          winner:  winner ,
-        text: 'Play Again',
-        ),
 
 
-          ],
-        );
-      },
-    );
-  }
   bool _checkWin(String player) {
     for (int i = 0; i < 3; i++) {
       if (board[i][0] == player &&
@@ -115,30 +83,41 @@ String winner = '';
   void _resetGame() {
     setState(() {
       board = List.generate(3, (_) => List.filled(3, ''));
-      currentPlayer = (winner == 'draw') ? ['X', 'O'].elementAt(Random().nextInt(2)) : winner;
-      });
+      currentPlayer = (winner == 'draw')
+          ? ['X', 'O'].elementAt(Random().nextInt(2))
+          : winner;
+    });
   }
-
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:ParentContainer(
+      appBar: AppBar(
+          backgroundColor: GameColors.kGradient1,
+          leading: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: const Icon(
+                Icons.arrow_back_outlined,
+                color: GameColors.kWhitish,
+              ))),
+      body: ParentContainer(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ScoreBoard(
+              playerXName: widget.playerXName,
+              playerOName: widget.playerOName,
               playerXScore: _checkWin('X') ? 1 : 0,
               playerOScore: _checkWin('O') ? 1 : 0,
               isTurn: currentPlayer == 'X',
             ),
-
             SizedBox(
               height: 15.h,
             ),
             Container(
-              margin:  EdgeInsets.all(4.0.w),
+              margin: EdgeInsets.all(4.0.w),
               child: GridView.builder(
                 padding: const EdgeInsets.all(5.0),
                 shrinkWrap: true,
@@ -182,8 +161,6 @@ String winner = '';
                 itemCount: 9,
               ),
             ),
-
-
           ],
         ),
       ),
