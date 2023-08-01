@@ -10,7 +10,7 @@ import 'game_screen.dart';
 class PlayerNames extends StatelessWidget {
   const PlayerNames({super.key});
 
-  Widget buildTextField(String hintText, IconData icon, bool isX) {
+  Widget buildTextField(String hintText, IconData icon, bool isX, ValueSetter<String> onChanged) {
     return TextField(
       cursorColor: isX ? GameColors.kWhitish : GameColors.kPurple,
       style: const TextStyle(color: GameColors.kWhitish),
@@ -35,6 +35,8 @@ class PlayerNames extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController player1 = TextEditingController();
+    TextEditingController player2 = TextEditingController();
     return Scaffold(
         appBar: AppBar(
    backgroundColor: GameColors.kGradient1,
@@ -67,7 +69,10 @@ class PlayerNames extends StatelessWidget {
                 SizedBox(
                   height: 7.h,
                 ),
-                buildTextField('Player 1', Icons.circle_outlined, true),
+                buildTextField('Player 1', Icons.circle_outlined, true,
+                
+
+                ),
                 SizedBox(
                   height: 2.h,
                 ),
