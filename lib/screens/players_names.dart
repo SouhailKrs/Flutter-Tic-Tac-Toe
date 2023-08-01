@@ -50,6 +50,7 @@ class PlayerNames extends HookWidget {
 
     return Scaffold(
         appBar: AppBar(
+
             backgroundColor: GameColors.kGradient1,
             leading: IconButton(
                 onPressed: () {
@@ -59,8 +60,8 @@ class PlayerNames extends HookWidget {
                   Icons.arrow_back_outlined,
                   color: GameColors.kWhitish,
                 ))),
-        body: SingleChildScrollView(
-          child: ParentContainer(
+        body: ParentContainer(
+          child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -96,7 +97,7 @@ class PlayerNames extends HookWidget {
                 ),
                 SizedBox(
                   width: double.infinity,
-                  child: 
+                  child:
 
                 HookBuilder(builder: (context) {
                   final isEnabled = useValueListenable(isBtnEnabled);
