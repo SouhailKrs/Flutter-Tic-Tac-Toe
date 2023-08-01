@@ -82,7 +82,7 @@ class MainMenuButtons extends StatelessWidget {
 
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-          backgroundColor: GameColors.kBlueColor,
+          backgroundColor: GameColors.kBlue,
 
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),

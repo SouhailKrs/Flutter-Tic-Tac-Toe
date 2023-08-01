@@ -24,7 +24,7 @@ class ScoreBoard extends StatelessWidget {
         border: isTurn
             ? playerLabel == 'Player X'
                 ? Border.all(
-                    color: GameColors.kBlueColor,
+                    color: GameColors.kBlue,
                     width: 2.0,
                   )
                 : Border.all(

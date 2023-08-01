@@ -13,10 +13,10 @@ class GameScreen extends StatefulWidget {
   const GameScreen({Key? key}) : super(key: key);
 
   @override
-  _GameScreenState createState() => _GameScreenState();
+  GameScreenState createState() => GameScreenState();
 }
 
-class _GameScreenState extends State<GameScreen> {
+class GameScreenState extends State<GameScreen> {
   List<List<String>> board = List.generate(3, (_) => List.filled(3, ''));
   String currentPlayer = 'X';
 String winner = '';
@@ -65,6 +65,7 @@ String winner = '';
           Navigator.of(context).pop();
          _resetGame();
         },
+          winner:  winner ,
         text: 'Play Again',
         ),
 
@@ -171,7 +172,7 @@ String winner = '';
                                   GoogleFonts.permanentMarker().fontFamily,
                               fontWeight: FontWeight.bold,
                               color: board[row][col] == 'X'
-                                  ? GameColors.kBackground
+                                  ? GameColors.kBlue
                                   : GameColors.kPurple),
                         ),
                       ),
