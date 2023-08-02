@@ -5,7 +5,7 @@ import 'package:flutter_tic_tac_toe/widgets/button_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 
-import '../widgets/parent_widget.dart';
+import '../widgets/wrapper_container.dart';
 import 'game_screen.dart';
 
 class PlayerNames extends HookWidget {
@@ -15,7 +15,7 @@ class PlayerNames extends HookWidget {
       ValueSetter<String> onChanged, TextEditingController controller) {
     return TextField(
       cursorColor: isX ? GameColors.kWhitish : GameColors.kPurple,
-      style: TextStyle(
+      style: const TextStyle(
         color: GameColors.kWhitish,
       ),
       controller: controller,
@@ -26,7 +26,6 @@ class PlayerNames extends HookWidget {
       decoration: InputDecoration(
         counterText: '',
         filled: true,
-        //<-- SEE HERE
         border: OutlineInputBorder(
           borderSide: BorderSide.none,
           borderRadius: BorderRadius.all(Radius.circular(3.w)),
@@ -65,7 +64,7 @@ class PlayerNames extends HookWidget {
                   Icons.arrow_back_outlined,
                   color: GameColors.kWhitish,
                 ))),
-        body: ParentContainer(
+        body: WrapperContainer(
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_tic_tac_toe/screens/colors.dart';
 import 'package:flutter_tic_tac_toe/screens/players_names.dart';
-import 'package:flutter_tic_tac_toe/widgets/parent_widget.dart';
+import 'package:flutter_tic_tac_toe/widgets/wrapper_container.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 
@@ -22,7 +22,7 @@ class MainMenu extends StatelessWidget {
     return
       Scaffold(
         body:
-      ParentContainer(
+      WrapperContainer(
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

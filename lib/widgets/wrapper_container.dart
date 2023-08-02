@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tic_tac_toe/screens/colors.dart';
 import 'package:sizer/sizer.dart';
 
-class ParentContainer extends StatelessWidget {
-  const ParentContainer({super.key, required this.child});
+class WrapperContainer extends StatelessWidget {
+  const WrapperContainer({super.key, required this.child});
 
   final Widget child;
   @override
@@ -20,8 +20,6 @@ class ParentContainer extends StatelessWidget {
           colors: [
           GameColors.kGradient1,
           GameColors.kGradient2,
-
-
           ],
           stops: [0.5, 0.9],
         ),

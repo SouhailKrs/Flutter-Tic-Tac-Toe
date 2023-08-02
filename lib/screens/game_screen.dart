@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_tic_tac_toe/screens/colors.dart';
 import 'package:flutter_tic_tac_toe/widgets/button_widget.dart';
-import 'package:flutter_tic_tac_toe/widgets/parent_widget.dart';
+import 'package:flutter_tic_tac_toe/widgets/wrapper_container.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 
@@ -30,18 +30,17 @@ class GameScreenState extends State<GameScreen> {
         board[row][col] = currentPlayer;
         if (_checkWin(currentPlayer)) {
           winner = currentPlayer;
-          showGameAlertDialog("Player $currentPlayer wins!",context,currentPlayer, _resetGame);
+          showGameAlertDialog("Player $currentPlayer wins!", context,
+              currentPlayer, _resetGame);
         } else if (_checkDraw()) {
           winner = 'draw';
-          showGameAlertDialog("It's a draw!",context,"draw", _resetGame);
+          showGameAlertDialog("It's a draw!", context, "draw", _resetGame);
         } else {
           currentPlayer = currentPlayer == 'X' ? 'O' : 'X';
         }
       });
     }
   }
-
-
 
   bool _checkWin(String player) {
     for (int i = 0; i < 3; i++) {
@@ -102,7 +101,7 @@ class GameScreenState extends State<GameScreen> {
                 Icons.arrow_back_outlined,
                 color: GameColors.kWhitish,
               ))),
-      body: ParentContainer(
+      body: WrapperContainer(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
