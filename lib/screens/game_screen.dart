@@ -92,15 +92,28 @@ class GameScreenState extends State<GameScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: GameColors.kGradient1,
-          leading: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: const Icon(
-                Icons.arrow_back_outlined,
-                color: GameColors.kWhitish,
-              ))),
+        backgroundColor: GameColors.kGradient1,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(
+            Icons.arrow_back_outlined,
+            color: GameColors.kWhitish,
+          ),
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {
+           //   _resetGame();
+            },
+            icon: const Icon(
+              Icons.history_outlined,
+              color: GameColors.kWhitish,
+            ),
+          ),
+        ],
+      ),
       body: WrapperContainer(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
