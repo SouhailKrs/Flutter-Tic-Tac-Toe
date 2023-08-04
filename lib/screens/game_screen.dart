@@ -10,6 +10,7 @@ import 'package:sizer/sizer.dart';
 import '../model/history_hive_model.dart';
 import '../storage/history_box.dart';
 import '../widgets/alert_dialog.dart';
+import '../widgets/history_modal.dart';
 import '../widgets/scoreboard.dart';
 
 class GameScreen extends StatefulWidget {

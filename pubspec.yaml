@@ -52,6 +52,7 @@ dependencies:
   path_provider:
   hive_flutter:
   hive_generator:
+  intl: ^0.18.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
