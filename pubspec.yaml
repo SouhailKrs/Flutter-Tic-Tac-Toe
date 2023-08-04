@@ -38,7 +38,7 @@ dependencies:
   google_fonts: ^5.1.0
   sizer: ^2.0.15
   flutter_hooks: ^0.20.0
-  hive: ^2.2.3
+
 
 
 
@@ -48,7 +48,10 @@ dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
-  hive_generator: ^2.0.0
+  hive:
+  path_provider:
+  hive_flutter:
+  hive_generator:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

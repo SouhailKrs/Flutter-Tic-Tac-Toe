@@ -18,11 +18,12 @@ class HistoryModelHive {
   @HiveField(2)
   String playerOName;
   @HiveField(3)
-  String winner;
+  String? winner;
   @HiveField(4)
   DateTime date;
-}
-class HistoryBox {
 
-  static const String historyBoxName = 'historyBox';
+  @override
+  String toString() {
+    return 'HistoryModelHive{playerXName: $playerXName, playerOName: $playerOName, winner: $winner, date: $date}';
+  }
 }

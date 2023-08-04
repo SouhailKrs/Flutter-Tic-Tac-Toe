@@ -7,6 +7,8 @@ import 'package:flutter_tic_tac_toe/widgets/wrapper_container.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 
+import '../model/history_hive_model.dart';
+import '../storage/history_box.dart';
 import '../widgets/alert_dialog.dart';
 import '../widgets/scoreboard.dart';
 
@@ -32,12 +34,21 @@ class GameScreenState extends State<GameScreen> {
           winner = currentPlayer;
           showGameAlertDialog("Player $currentPlayer wins!", context,
               currentPlayer, _resetGame);
+          HistoryBox.setHistory(HistoryModelHive(
+              playerXName: widget.playerXName,
+              playerOName: widget.playerOName,
+              winner: winner));
         } else if (_checkDraw()) {
           winner = 'draw';
           showGameAlertDialog("It's a draw!", context, "draw", _resetGame);
+          HistoryBox.setHistory(HistoryModelHive(
+              playerXName: widget.playerXName,
+              playerOName: widget.playerOName,
+              winner: winner));
         } else {
           currentPlayer = currentPlayer == 'X' ? 'O' : 'X';
         }
+
       });
     }
   }
@@ -105,7 +116,7 @@ class GameScreenState extends State<GameScreen> {
         actions: [
           IconButton(
             onPressed: () {
-           //   _resetGame();
+              buildHistoryBottomSheet(context);
             },
             icon: const Icon(
               Icons.history_outlined,
