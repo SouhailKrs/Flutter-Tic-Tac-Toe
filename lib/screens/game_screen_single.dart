@@ -7,6 +7,7 @@ import 'package:flutter_tic_tac_toe/widgets/wrapper_container.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 
+import '../Algorithm/minimax_algorithm.dart';
 import '../model/history_hive_model.dart';
 import '../storage/history_box.dart';
 import '../widgets/alert_dialog.dart';
@@ -31,80 +32,88 @@ class GameScreenSingleState extends State<GameScreenSingle> {
     if (board[row][col].isEmpty) {
       setState(() {
         board[row][col] = currentPlayer;
-        if (_checkWin(currentPlayer)) {
+        if (checkWin(board,currentPlayer)) {
           winner = currentPlayer;
           showGameAlertDialog("Player $currentPlayer wins!", context,
               currentPlayer, _resetGame);
-        } else if (_checkDraw()) {
+        } else if (checkDraw(board)) {
           winner = 'draw';
           showGameAlertDialog("It's a draw!", context, "draw", _resetGame);
         } else {
           currentPlayer = currentPlayer == 'X' ? 'O' : 'X';
           if (currentPlayer == 'O') {
-            _makeAIMove();
+            bestMove();
           }
         }
       });
     }
   }
-  void _makeAIMove() {
-    List<int> availableCells = [];
+  void bestMove() {
+    int bestScore = -1000;
+    int row = -1;
+    int col = -1;
     for (int i = 0; i < 3; i++) {
       for (int j = 0; j < 3; j++) {
         if (board[i][j].isEmpty) {
-          availableCells.add(i * 3 + j);
+          board[i][j] = 'O'; // Assume the AI (O) makes this move
+          int score = minimax(board, false);
+          board[i][j] = ''; // Undo the move
+
+          if (score > bestScore) {
+            bestScore = score;
+            row = i;
+            col = j;
+          }
         }
       }
     }
-
-    if (availableCells.isNotEmpty) {
-      int randomCellIndex = Random().nextInt(availableCells.length);
-      int row = availableCells[randomCellIndex] ~/ 3;
-      int col = availableCells[randomCellIndex] % 3;
-
-      // Delay the AI move to make it more human-like (optional)
-      Future.delayed(const Duration(milliseconds: 500), () {
+    Future.delayed(const Duration(milliseconds: 500), () {
+      if (row != -1 && col != -1) {
         _onCellTap(row, col);
-      });
-    }
+      }
+    });
   }
 
-  bool _checkWin(String player) {
-    for (int i = 0; i < 3; i++) {
-      if (board[i][0] == player &&
-          board[i][1] == player &&
-          board[i][2] == player) {
-        return true; // Row win
-      }
-      if (board[0][i] == player &&
-          board[1][i] == player &&
-          board[2][i] == player) {
-        return true;
-      }
-    }
-    if (board[0][0] == player &&
-        board[1][1] == player &&
-        board[2][2] == player) {
-      return true;
-    }
-    if (board[0][2] == player &&
-        board[1][1] == player &&
-        board[2][0] == player) {
-      return true;
-    }
-    return false;
-  }
 
-  bool _checkDraw() {
-    for (int i = 0; i < 3; i++) {
-      for (int j = 0; j < 3; j++) {
-        if (board[i][j].isEmpty) {
-          return false;
+  int minimax(   List<List<String>> board, bool isMaximizing) {
+    if (checkWin(board,'O')) {
+      return 1;
+    } else if (checkWin(board,'X')) {
+      return -1;
+    } else if (checkDraw(board)) {
+      return 0;
+    }
+
+    if (isMaximizing) {
+      int bestScore = -1000;
+      for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+          if (board[i][j].isEmpty) {
+            board[i][j] = 'O';
+            int score = minimax(board, false);
+            board[i][j] = '';
+            bestScore = max(score, bestScore);
+          }
         }
       }
+      return bestScore;
+    } else {
+      int bestScore = 1000;
+      for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+          if (board[i][j].isEmpty) {
+            board[i][j] = 'X';
+            int score = minimax(board, true);
+            board[i][j] = '';
+            bestScore = min(score, bestScore);
+          }
+        }
+      }
+      return bestScore;
     }
-    return true;
   }
+
+
 
   void _resetGame() {
     setState(() {
@@ -146,7 +155,7 @@ class GameScreenSingleState extends State<GameScreenSingle> {
             ScoreBoard(
               playerXName: widget.playerXName,
               playerOName: widget.playerOName,
-              playerXScore: _checkWin('X') ? 1 : 0,
+              playerXScore: checkWin('X') ? 1 : 0,
               playerOScore: _checkWin('O') ? 1 : 0,
               isTurn: currentPlayer == 'X',
             ),
