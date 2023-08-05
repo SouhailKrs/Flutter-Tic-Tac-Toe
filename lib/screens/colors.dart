@@ -6,6 +6,7 @@ class GameColors {
   static const kWhitish = Color(0xffF4F4F4);
   static const kBlue = Color(0xff1f64d7);
   static const kForeground = Color(0xff0d1114);
+
   static const kLighterForeground = Color(0xff3c4e5c);
 
   static const kGrey = Color(0xff8d95a7);

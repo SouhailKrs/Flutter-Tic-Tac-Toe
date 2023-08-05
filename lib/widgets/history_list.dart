@@ -4,6 +4,7 @@ import 'package:flutter_tic_tac_toe/model/history_hive_model.dart';
 import 'package:flutter_tic_tac_toe/screens/colors.dart';
 import 'package:flutter_tic_tac_toe/storage/history_box.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:sizer/sizer.dart';
 
 class HistoryListView extends StatelessWidget {
@@ -14,9 +15,9 @@ class HistoryListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<HistoryModelHive> historyList = HistoryBox.getHistory();
-    print(historyList);
+
     return Scaffold(
-      backgroundColor: GameColors.kBackground,
+      backgroundColor: GameColors.kLighterForeground,
       body: historyList.isEmpty
           ? Center(
               child: Text(
@@ -33,27 +34,22 @@ class HistoryListView extends StatelessWidget {
                 parent: AlwaysScrollableScrollPhysics(),
               ),
               slivers: <Widget>[
-                CupertinoSliverRefreshControl(
-                  onRefresh: () async {
-                    await Future.delayed(const Duration(milliseconds: 700));
-                  },
-                ),
                 SliverList(
                   delegate: SliverChildBuilderDelegate(
                     (BuildContext context, int index) => Container(
-                      margin: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 20),
+                      margin:  EdgeInsets.symmetric(
+                          horizontal: 2.w, vertical: 1.h),
                       width: double.infinity,
                       decoration: BoxDecoration(
                         color: Colors.white,
-                        borderRadius: BorderRadius.circular(5),
+                        borderRadius: BorderRadius.circular(8),
                         boxShadow: [
                           BoxShadow(
                             color: Colors.grey.withOpacity(0.2),
                             spreadRadius: 4,
                             blurRadius: 4,
                             offset: const Offset(
-                                0, 1), // changes position of shadow
+                                0, 1),
                           ),
                         ],
                       ),
@@ -62,7 +58,7 @@ class HistoryListView extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
                             Container(
-                              width: 1.1.w,
+                              width: 2.1.w,
                               height: 10.h,
                               decoration: BoxDecoration(
                                 color: historyList[index].winner == 'X'
@@ -71,38 +67,60 @@ class HistoryListView extends StatelessWidget {
                                         ? GameColors.kGrey
                                         : GameColors.kPurple,
                                 borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(30),
-                                  bottomLeft: Radius.circular(30),
+                                  topLeft: Radius.circular(50),
+                                  bottomLeft: Radius.circular(50),
                                 ),
                               ),
                             ),
                             Expanded(
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
-                                    vertical: 30, horizontal: 30),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisSize: MainAxisSize.min,
+                                    vertical: 5, horizontal: 30),
+                                child:
+
+                                Column(
                                   children: [
+                                    Text(
+
+                                      DateFormat('MMM d, y HH:mm').format( historyList[index].date.toLocal()),
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w100,
+                                        color: Colors.black,
+                                        fontFamily:
+                                            GoogleFonts.permanentMarker()
+                                                .fontFamily,
+                                      ),
+                                    ),
                                     Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Expanded(
-                                          child: Text(
-                                            historyList[index].playerXName,
-                                            style: TextStyle(
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.bold,
-                                              fontFamily:
-                                                  GoogleFonts.permanentMarker()
-                                                      .fontFamily,
-                                            ),
+                                        Text(
+                                          historyList[index].playerXName,
+                                          style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                            color: GameColors.kBlue,
+                                            fontFamily:
+                                                GoogleFonts.permanentMarker()
+                                                    .fontFamily,
+                                          ),
+                                        ),
+                                        Text(
+                                          "VS",
+                                          style: TextStyle(
+                                            fontSize: 30,
+                                            fontWeight: FontWeight.bold,
+                                            fontFamily:
+                                            GoogleFonts.permanentMarker()
+                                                .fontFamily,
                                           ),
                                         ),
                                         Text(
                                           historyList[index].playerOName,
                                           style: TextStyle(
+                                            color: GameColors.kPurple,
                                             fontSize: 20,
                                             fontWeight: FontWeight.bold,
                                             fontFamily:
@@ -110,6 +128,7 @@ class HistoryListView extends StatelessWidget {
                                                     .fontFamily,
                                           ),
                                         ),
+
                                       ],
                                     ),
                                   ],

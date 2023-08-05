@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          home:  const HistoryListView(),
+          home:  const GameScreen(playerXName: "aaa", playerOName: "aaas"),
         );
       },
     );
