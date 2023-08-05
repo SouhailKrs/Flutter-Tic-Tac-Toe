@@ -55,10 +55,9 @@ class GameScreenSingleState extends State<GameScreenSingle> {
     for (int i = 0; i < 3; i++) {
       for (int j = 0; j < 3; j++) {
         if (board[i][j].isEmpty) {
-          board[i][j] = 'O'; // Assume the AI (O) makes this move
+          board[i][j] = 'O';
           int score = minimax(board, false);
-          board[i][j] = ''; // Undo the move
-
+          board[i][j] = '';
           if (score > bestScore) {
             bestScore = score;
             row = i;
@@ -155,8 +154,8 @@ class GameScreenSingleState extends State<GameScreenSingle> {
             ScoreBoard(
               playerXName: widget.playerXName,
               playerOName: widget.playerOName,
-              playerXScore: checkWin('X') ? 1 : 0,
-              playerOScore: _checkWin('O') ? 1 : 0,
+              playerXScore: checkWin(board,'X') ? 1 : 0,
+              playerOScore: checkWin(board,'O') ? 1 : 0,
               isTurn: currentPlayer == 'X',
             ),
             SizedBox(
