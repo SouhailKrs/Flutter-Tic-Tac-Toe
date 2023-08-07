@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_tic_tac_toe/screens/colors.dart';
+import 'package:flutter_tic_tac_toe/screens/game_screen_single.dart';
 import 'package:flutter_tic_tac_toe/screens/players_names.dart';
 import 'package:flutter_tic_tac_toe/widgets/wrapper_container.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -38,11 +39,11 @@ class MainMenu extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-              SizedBox(height: 20.h),
+              SizedBox(height: 15.h),
               MainMenuButtons(
                 btnText: 'Single Player',
                 onPressed: () {
-                  Navigator.pushNamed(context, '/game_screen');
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => GameScreenSingle(playerXName: "You", playerOName: "AI")));
                 },
               ),
               SizedBox(height: 2.h),
@@ -50,13 +51,6 @@ class MainMenu extends StatelessWidget {
                 btnText: 'Multiplayer',
                 onPressed: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => const PlayerNames()));
-                },
-              ),
-              SizedBox(height: 2.h),
-              MainMenuButtons(
-                btnText: 'Settings',
-                onPressed: () {
-                  Navigator.pushNamed(context, '/settings_screen');
                 },
               ),
             ],

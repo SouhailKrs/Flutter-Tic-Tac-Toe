@@ -36,9 +36,17 @@ class GameScreenSingleState extends State<GameScreenSingle> {
           winner = currentPlayer;
           showGameAlertDialog("Player $currentPlayer wins!", context,
               currentPlayer, _resetGame);
+          HistoryBox.setHistory(HistoryModelHive(
+              playerXName: widget.playerXName,
+              playerOName: widget.playerOName,
+              winner: winner));
         } else if (checkDraw(board)) {
           winner = 'draw';
           showGameAlertDialog("It's a draw!", context, "draw", _resetGame);
+          HistoryBox.setHistory(HistoryModelHive(
+              playerXName: widget.playerXName,
+              playerOName: widget.playerOName,
+              winner: winner));
         } else {
           currentPlayer = currentPlayer == 'X' ? 'O' : 'X';
           if (currentPlayer == 'O') {

@@ -16,6 +16,7 @@ class HistoryListView extends StatelessWidget {
   Widget build(BuildContext context) {
     List<HistoryModelHive> historyList = HistoryBox.getHistory();
 
+    historyList.sort((a, b) => b.date.compareTo(a.date));
     return Scaffold(
       backgroundColor: GameColors.kLighterForeground,
       body: historyList.isEmpty
