@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_tic_tac_toe/model/history_hive_model.dart';
 import 'package:flutter_tic_tac_toe/screens/game_screen.dart';
 import 'package:flutter_tic_tac_toe/screens/game_screen_single.dart';
@@ -16,6 +17,7 @@ void main() async {
   Hive.registerAdapter(HistoryModelHiveAdapter());
   await HistoryBox.openBox();
 
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
   runApp(const MyApp());
 }
 
