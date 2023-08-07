@@ -51,7 +51,7 @@ The famous Tic Tac Toe game built using Flutter. To enhance the user experience,
 - Clone or download the repo 
 
 ```{r klippy, echo=FALSE, include=TRUE}
-git clone https://github.com/SouhailKrs/TradeasyAndroid
+git clone https://github.com/SouhailKrs/Flutter-Tic-Tac-Toe
 
 ```
 - Get dependencies
