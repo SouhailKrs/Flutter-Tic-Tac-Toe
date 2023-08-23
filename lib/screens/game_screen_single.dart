@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_tic_tac_toe/screens/colors.dart';
-import 'package:flutter_tic_tac_toe/widgets/button_widget.dart';
 import 'package:flutter_tic_tac_toe/widgets/wrapper_container.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
@@ -20,6 +19,7 @@ class GameScreenSingle extends StatefulWidget {
       : super(key: key);
   final String playerXName;
   final String playerOName;
+
   @override
   GameScreenSingleState createState() => GameScreenSingleState();
 }
@@ -28,11 +28,12 @@ class GameScreenSingleState extends State<GameScreenSingle> {
   List<List<String>> board = List.generate(3, (_) => List.filled(3, ''));
   String currentPlayer = 'X';
   String winner = '';
+
   void _onCellTap(int row, int col) {
     if (board[row][col].isEmpty) {
       setState(() {
         board[row][col] = currentPlayer;
-        if (checkWin(board,currentPlayer)) {
+        if (checkWin(board, currentPlayer)) {
           winner = currentPlayer;
           showGameAlertDialog("Player $currentPlayer wins!", context,
               currentPlayer, _resetGame);
@@ -56,6 +57,7 @@ class GameScreenSingleState extends State<GameScreenSingle> {
       });
     }
   }
+
   void bestMove() {
     int bestScore = -1000;
     int row = -1;
@@ -81,11 +83,10 @@ class GameScreenSingleState extends State<GameScreenSingle> {
     });
   }
 
-
-  int minimax(   List<List<String>> board, bool isMaximizing) {
-    if (checkWin(board,'O')) {
+  int minimax(List<List<String>> board, bool isMaximizing) {
+    if (checkWin(board, 'O')) {
       return 1;
-    } else if (checkWin(board,'X')) {
+    } else if (checkWin(board, 'X')) {
       return -1;
     } else if (checkDraw(board)) {
       return 0;
@@ -120,13 +121,11 @@ class GameScreenSingleState extends State<GameScreenSingle> {
     }
   }
 
-
-
   void _resetGame() {
     setState(() {
       board = List.generate(3, (_) => List.filled(3, ''));
       currentPlayer = 'X';
-      });
+    });
   }
 
   @override
@@ -162,8 +161,8 @@ class GameScreenSingleState extends State<GameScreenSingle> {
             ScoreBoard(
               playerXName: widget.playerXName,
               playerOName: widget.playerOName,
-              playerXScore: checkWin(board,'X') ? 1 : 0,
-              playerOScore: checkWin(board,'O') ? 1 : 0,
+              playerXScore: checkWin(board, 'X') ? 1 : 0,
+              playerOScore: checkWin(board, 'O') ? 1 : 0,
               isTurn: currentPlayer == 'X',
             ),
             SizedBox(
@@ -201,7 +200,7 @@ class GameScreenSingleState extends State<GameScreenSingle> {
                           style: TextStyle(
                               fontSize: 50,
                               fontFamily:
-                              GoogleFonts.permanentMarker().fontFamily,
+                                  GoogleFonts.permanentMarker().fontFamily,
                               fontWeight: FontWeight.bold,
                               color: board[row][col] == 'X'
                                   ? GameColors.kBlue

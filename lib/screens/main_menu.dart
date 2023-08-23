@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_tic_tac_toe/screens/colors.dart';
 import 'package:flutter_tic_tac_toe/screens/game_screen_single.dart';
 import 'package:flutter_tic_tac_toe/screens/players_names.dart';
@@ -7,23 +6,13 @@ import 'package:flutter_tic_tac_toe/widgets/wrapper_container.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 
-import 'game_screen.dart';
-
-
 class MainMenu extends StatelessWidget {
   const MainMenu({super.key});
 
-
-
-
-
   @override
   Widget build(BuildContext context) {
-
-    return
-      Scaffold(
-        body:
-      WrapperContainer(
+    return Scaffold(
+      body: WrapperContainer(
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -33,9 +22,7 @@ class MainMenu extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 50,
                   fontWeight: FontWeight.bold,
-                  fontFamily:
-                  GoogleFonts.permanentMarker().fontFamily,
-
+                  fontFamily: GoogleFonts.permanentMarker().fontFamily,
                   color: Colors.white,
                 ),
               ),
@@ -43,51 +30,54 @@ class MainMenu extends StatelessWidget {
               MainMenuButtons(
                 btnText: 'Single Player',
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => GameScreenSingle(playerXName: "You", playerOName: "AI")));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => GameScreenSingle(
+                              playerXName: "You", playerOName: "AI")));
                 },
               ),
               SizedBox(height: 2.h),
               MainMenuButtons(
                 btnText: 'Multiplayer',
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const PlayerNames()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const PlayerNames()));
                 },
               ),
             ],
           ),
         ),
-
       ),
     );
   }
 }
 
-
-
-
 class MainMenuButtons extends StatelessWidget {
-  const MainMenuButtons({super.key, required this.btnText, required this.onPressed});
+  const MainMenuButtons(
+      {super.key, required this.btnText, required this.onPressed});
+
   final String btnText;
-  final void  Function() onPressed;
+  final void Function() onPressed;
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: 60.w,
       height: 8.h,
       child: ElevatedButton(
-
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           backgroundColor: GameColors.kForeground,
-
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
         ),
         child: Text(
           btnText,
-          style:  TextStyle
-            (
+          style: TextStyle(
             color: GameColors.kWhitish,
             fontFamily: GoogleFonts.permanentMarker().fontFamily,
             fontSize: 20,

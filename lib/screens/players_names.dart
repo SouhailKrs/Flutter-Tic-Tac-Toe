@@ -21,8 +21,6 @@ class PlayerNames extends HookWidget {
       controller: controller,
       onChanged: onChanged,
       maxLength: 10,
-      // gide max length indicator
-
       decoration: InputDecoration(
         counterText: '',
         filled: true,
@@ -33,7 +31,6 @@ class PlayerNames extends HookWidget {
         fillColor: GameColors.kForeground,
         hintText: hintText,
         hintStyle: const TextStyle(color: GameColors.kBackground),
-
         prefixIcon: Icon(
           icon,
           color: isX ? GameColors.kBlue : GameColors.kPurple,
@@ -110,14 +107,15 @@ class PlayerNames extends HookWidget {
                             if (playerXController.text.toLowerCase().trim() ==
                                 playerOController.text.toLowerCase().trim()) {
                               ScaffoldMessenger.of(context).showSnackBar(
-                                 SnackBar(
+                                SnackBar(
                                   backgroundColor: GameColors.kForeground,
-                                  content: Text('Please enter different names',
-
-                                  style: TextStyle(color: GameColors.kWhitish,
-
-                                  fontFamily: GoogleFonts.permanentMarker().fontFamily,
-                                  ),
+                                  content: Text(
+                                    'Please enter different names',
+                                    style: TextStyle(
+                                      color: GameColors.kWhitish,
+                                      fontFamily: GoogleFonts.permanentMarker()
+                                          .fontFamily,
+                                    ),
                                   ),
                                 ),
                               );

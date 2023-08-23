@@ -16,6 +16,7 @@ class ButtonWidget extends StatelessWidget {
   final String text;
   final String? winner;
   final bool isEnabled;
+
   Color getColor(bool isEnabled, String winner) {
     if (!isEnabled) {
       return GameColors.kGrey;

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
+
 import '../screens/colors.dart';
 
 class ScoreBoard extends StatelessWidget {
@@ -8,7 +9,9 @@ class ScoreBoard extends StatelessWidget {
     super.key,
     required this.playerXScore,
     required this.playerOScore,
-    required this.isTurn, required this.playerXName, required this.playerOName,
+    required this.isTurn,
+    required this.playerXName,
+    required this.playerOName,
   });
 
   final int playerXScore;
@@ -46,9 +49,7 @@ class ScoreBoard extends StatelessWidget {
               fontSize: 10.sp,
               fontFamily: GoogleFonts.permanentMarker().fontFamily,
               fontWeight: FontWeight.bold,
-              color: playerLabel == playerXName
-                  ? Colors.blue
-                  : Colors.purple,
+              color: playerLabel == playerXName ? Colors.blue : Colors.purple,
             ),
           ),
           Text(

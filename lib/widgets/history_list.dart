@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tic_tac_toe/model/history_hive_model.dart';
 import 'package:flutter_tic_tac_toe/screens/colors.dart';
@@ -38,8 +37,8 @@ class HistoryListView extends StatelessWidget {
                 SliverList(
                   delegate: SliverChildBuilderDelegate(
                     (BuildContext context, int index) => Container(
-                      margin:  EdgeInsets.symmetric(
-                          horizontal: 2.w, vertical: 1.h),
+                      margin:
+                          EdgeInsets.symmetric(horizontal: 2.w, vertical: 1.h),
                       width: double.infinity,
                       decoration: BoxDecoration(
                         color: Colors.white,
@@ -49,8 +48,7 @@ class HistoryListView extends StatelessWidget {
                             color: Colors.grey.withOpacity(0.2),
                             spreadRadius: 4,
                             blurRadius: 4,
-                            offset: const Offset(
-                                0, 1),
+                            offset: const Offset(0, 1),
                           ),
                         ],
                       ),
@@ -77,13 +75,11 @@ class HistoryListView extends StatelessWidget {
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
                                     vertical: 5, horizontal: 30),
-                                child:
-
-                                Column(
+                                child: Column(
                                   children: [
                                     Text(
-
-                                      DateFormat('MMM d, y HH:mm').format( historyList[index].date.toLocal()),
+                                      DateFormat('MMM d, y HH:mm').format(
+                                          historyList[index].date.toLocal()),
                                       style: TextStyle(
                                         fontSize: 14,
                                         fontWeight: FontWeight.w100,
@@ -114,8 +110,8 @@ class HistoryListView extends StatelessWidget {
                                             fontSize: 30,
                                             fontWeight: FontWeight.bold,
                                             fontFamily:
-                                            GoogleFonts.permanentMarker()
-                                                .fontFamily,
+                                                GoogleFonts.permanentMarker()
+                                                    .fontFamily,
                                           ),
                                         ),
                                         Text(
@@ -129,7 +125,6 @@ class HistoryListView extends StatelessWidget {
                                                     .fontFamily,
                                           ),
                                         ),
-
                                       ],
                                     ),
                                   ],

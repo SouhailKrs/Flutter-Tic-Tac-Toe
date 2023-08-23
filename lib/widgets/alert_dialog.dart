@@ -1,11 +1,11 @@
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../screens/colors.dart';
 import 'button_widget.dart';
-void showGameAlertDialog(String message,BuildContext context, String winner, Function resetGame) {
 
+void showGameAlertDialog(
+    String message, BuildContext context, String winner, Function resetGame) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
@@ -37,7 +37,6 @@ void showGameAlertDialog(String message,BuildContext context, String winner, Fun
             winner: winner,
             text: 'Play Again',
           ),
-
         ],
       );
     },

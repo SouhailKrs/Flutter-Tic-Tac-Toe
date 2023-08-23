@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_tic_tac_toe/screens/colors.dart';
-import 'package:flutter_tic_tac_toe/widgets/button_widget.dart';
 import 'package:flutter_tic_tac_toe/widgets/wrapper_container.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
@@ -19,6 +18,7 @@ class GameScreen extends StatefulWidget {
       : super(key: key);
   final String playerXName;
   final String playerOName;
+
   @override
   GameScreenState createState() => GameScreenState();
 }
@@ -27,6 +27,7 @@ class GameScreenState extends State<GameScreen> {
   List<List<String>> board = List.generate(3, (_) => List.filled(3, ''));
   String currentPlayer = 'X';
   String winner = '';
+
   void _onCellTap(int row, int col) {
     if (board[row][col].isEmpty) {
       setState(() {
@@ -49,7 +50,6 @@ class GameScreenState extends State<GameScreen> {
         } else {
           currentPlayer = currentPlayer == 'X' ? 'O' : 'X';
         }
-
       });
     }
   }

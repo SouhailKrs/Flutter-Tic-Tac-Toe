@@ -14,7 +14,7 @@ class HistoryBox {
     return box;
   }
 
-  static void setHistory(HistoryModelHive history)  {
+  static void setHistory(HistoryModelHive history) {
     final historyBox = getHistoryBox();
     historyBox.add(history);
   }
@@ -24,5 +24,4 @@ class HistoryBox {
     final historyList = historyBox.values.toList();
     return historyList;
   }
-
 }
