@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 
 import '../widgets/wrapper_container.dart';
-import 'game_screen.dart';
+import 'game_base_screen.dart';
 
 class PlayerNames extends HookWidget {
   const PlayerNames({super.key});
@@ -131,6 +131,7 @@ class PlayerNames extends HookWidget {
                                           playerXName: playerXController.text
                                               .toLowerCase()
                                               .trim(),
+                                      isAgainstAI: false,
                                         )));
                           },
                           text: 'Start Game');

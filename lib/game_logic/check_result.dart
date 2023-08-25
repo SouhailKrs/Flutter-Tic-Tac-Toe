@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../screens/game_screen.dart';
+import '../providers/game_providers.dart';
 
 bool checkWin(List<List<String>> board, String player) {
   for (int i = 0; i < 3; i++) {
@@ -28,15 +28,18 @@ bool checkWin(List<List<String>> board, String player) {
 
 bool checkDraw(List<List<String>> board) =>
     board.every((row) => row.every((cell) => cell.isNotEmpty));
-void resetGame(String currentPlayerValue, WidgetRef ref) {
+
+void resetGame(String currentPlayerValue, WidgetRef ref,
+    {bool isAgainstAI = false}) {
   final boardNotifier = ref.read(boardProvider.notifier);
   final winnerNotifier = ref.read(winnerProvider.notifier);
-
   boardNotifier.resetBoard();
-  if (winnerNotifier.state == 'draw') {
-    final random = Random();
-    final newCurrentPlayer = ['X', 'O'].elementAt(random.nextInt(2));
+  if (isAgainstAI) {
+    ref.read(currentPlayerProvider.notifier).state = 'X';
+  } else if (winnerNotifier.state == 'draw') {
+    final newCurrentPlayer = ['X', 'O'][Random().nextInt(2)];
     ref.read(currentPlayerProvider.notifier).state = newCurrentPlayer;
   }
+
   winnerNotifier.updateWinner('');
 }

@@ -30,3 +30,10 @@ class WinnerNotifier extends StateNotifier<String> {
   }
 }
 
+final boardProvider = StateNotifierProvider<BoardNotifier, List<List<String>>>(
+        (ref) => BoardNotifier());
+final currentPlayerProvider =
+StateNotifierProvider<CurrentPlayerNotifier, String>(
+        (ref) => CurrentPlayerNotifier());
+final winnerProvider =
+StateNotifierProvider<WinnerNotifier, String>((ref) => WinnerNotifier());

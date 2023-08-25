@@ -56,7 +56,7 @@ class ScoreBoard extends StatelessWidget {
             score.toString(),
             style: TextStyle(
               fontSize: 20,
-              fontFamily: GoogleFonts.permanentMarker().fontFamily,
+              fontFamily: GoogleFonts.caveat().fontFamily,
               fontWeight: FontWeight.bold,
               color: GameColors.kWhitish,
             ),
