@@ -27,18 +27,18 @@ perfomance.
 * **History** : Easily access the record of your past matches, the history is saved using Hive DB.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/SouhailKrs/Flutter-Tic-Tac-Toe/main/lib/game_screens/main_menu.png" width=170>
+  <img src="https://raw.githubusercontent.com/SouhailKrs/Flutter-Tic-Tac-Toe/main/lib/screenshots/main_menu.png" width=170>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="https://raw.githubusercontent.com/SouhailKrs/Flutter-Tic-Tac-Toe/main/lib/game_screens/single_player.png" width=170>
+  <img src="https://raw.githubusercontent.com/SouhailKrs/Flutter-Tic-Tac-Toe/main/lib/screenshots/single_player.png" width=170>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="https://raw.githubusercontent.com/SouhailKrs/Flutter-Tic-Tac-Toe/main/lib/game_screens/player_names.png" width=170>
+  <img src="https://raw.githubusercontent.com/SouhailKrs/Flutter-Tic-Tac-Toe/main/lib/screenshots/player_names.png" width=170>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 </p>
 <p align="center">
-  <img src="https://raw.githubusercontent.com/SouhailKrs/Flutter-Tic-Tac-Toe/main/lib/game_screens/o_wins.png" width=170>
+  <img src="https://raw.githubusercontent.com/SouhailKrs/Flutter-Tic-Tac-Toe/main/lib/screenshots/o_wins.png" width=170>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <img src="https://raw.githubusercontent.com/SouhailKrs/Flutter-Tic-Tac-Toe/main/lib/game_screens/game_history.png" width=170>
+    <img src="https://raw.githubusercontent.com/SouhailKrs/Flutter-Tic-Tac-Toe/main/lib/screenshots/game_history.png" width=170>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </p>
 
