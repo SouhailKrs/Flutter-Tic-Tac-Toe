@@ -8,7 +8,6 @@ void showGameAlertDialog(
     String message, BuildContext context, String winner, Function resetGame) {
   showDialog(
     context: context,
-
     barrierDismissible: false,
     builder: (BuildContext context) {
       return AlertDialog(

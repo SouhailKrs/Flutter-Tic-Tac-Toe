@@ -12,10 +12,11 @@ import '../theme/colors.dart';
 import '../widgets/alert_dialog.dart';
 import '../widgets/scoreboard.dart';
 import '../widgets/wrapper_container.dart';
-import 'game_base_screen.dart';
+
 int playerXScore = 0;
 int playerOScore = 0;
 bool isAIPlaying = false;
+
 class GameScreen extends ConsumerWidget {
   final String playerXName;
   final String playerOName;
@@ -26,19 +27,16 @@ class GameScreen extends ConsumerWidget {
     required this.playerXName,
     required this.playerOName,
     required this.isAgainstAI,
-
-  })
-      : super(key: key);
+  }) : super(key: key);
 
   @override
-
   Widget build(BuildContext context, WidgetRef ref) {
     final board = ref.watch(boardProvider);
     final currentPlayer = ref.watch(currentPlayerProvider);
     final winner = ref.watch(winnerProvider);
 
-
-    void makeAIMove(boardNotifier, currentPlayerNotifier, winnerNotifier, BuildContext context) {
+    void makeAIMove(boardNotifier, currentPlayerNotifier, winnerNotifier,
+        BuildContext context) {
       int bestScore = -1000;
       int bestMoveRow = -1;
       int bestMoveCol = -1;
@@ -60,7 +58,7 @@ class GameScreen extends ConsumerWidget {
       }
 
       if (bestMoveRow != -1 && bestMoveCol != -1) {
-        boardNotifier.updateBoard(bestMoveRow, bestMoveCol, 'O'); 
+        boardNotifier.updateBoard(bestMoveRow, bestMoveCol, 'O');
 
         if (checkWin(board, 'O')) {
           winnerNotifier.updateWinner('O');
@@ -69,7 +67,7 @@ class GameScreen extends ConsumerWidget {
             "AI wins!",
             context,
             'O',
-                () => resetGame('O', ref, isAgainstAI: isAgainstAI),
+            () => resetGame('O', ref, isAgainstAI: isAgainstAI),
           );
         } else if (checkDraw(board)) {
           winnerNotifier.updateWinner('draw');
@@ -77,7 +75,7 @@ class GameScreen extends ConsumerWidget {
             "It's a draw!",
             context,
             'draw',
-                () => resetGame('draw', ref, isAgainstAI: isAgainstAI),
+            () => resetGame('draw', ref, isAgainstAI: isAgainstAI),
           );
         } else {
           currentPlayerNotifier.togglePlayer();
@@ -105,7 +103,7 @@ class GameScreen extends ConsumerWidget {
             "Player $currentPlayerValue wins!",
             context,
             currentPlayerValue,
-                () => resetGame(currentPlayerValue,ref),
+            () => resetGame(currentPlayerValue, ref),
           );
           HistoryBox.setHistory(HistoryModelHive(
             playerXName: playerXName,
@@ -118,7 +116,7 @@ class GameScreen extends ConsumerWidget {
             "It's a draw!",
             context,
             "draw",
-                () => resetGame(currentPlayerValue,ref),
+            () => resetGame(currentPlayerValue, ref),
           );
           HistoryBox.setHistory(HistoryModelHive(
             playerXName: playerXName,
@@ -130,16 +128,14 @@ class GameScreen extends ConsumerWidget {
           if (isAgainstAI && currentPlayerValue == 'X') {
             isAIPlaying = true;
             Future.delayed(const Duration(milliseconds: 500), () {
-              makeAIMove(boardNotifier, currentPlayerNotifier, winnerNotifier,context);
+              makeAIMove(boardNotifier, currentPlayerNotifier, winnerNotifier,
+                  context);
               isAIPlaying = false;
             });
           }
         }
       }
     }
-
-
-
 
     return Scaffold(
       body: WrapperContainer(
@@ -163,7 +159,8 @@ class GameScreen extends ConsumerWidget {
                   child: GridView.builder(
                     padding: const EdgeInsets.all(5.0),
                     shrinkWrap: true,
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 3,
                       crossAxisSpacing: 10.0,
                       mainAxisSpacing: 10.0,
@@ -191,7 +188,7 @@ class GameScreen extends ConsumerWidget {
                               style: TextStyle(
                                 fontSize: 50,
                                 fontFamily:
-                                GoogleFonts.permanentMarker().fontFamily,
+                                    GoogleFonts.permanentMarker().fontFamily,
                                 fontWeight: FontWeight.bold,
                                 color: board[row][col] == 'X'
                                     ? GameColors.kBlue

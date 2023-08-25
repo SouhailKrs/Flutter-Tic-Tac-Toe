@@ -7,10 +7,10 @@ import '../theme/colors.dart';
 class ButtonWidget extends StatelessWidget {
   const ButtonWidget(
       {super.key,
-        required this.onPressed,
-        required this.text,
-        this.isEnabled = true,
-        this.winner = "draw"});
+      required this.onPressed,
+      required this.text,
+      this.isEnabled = true,
+      this.winner = "draw"});
 
   final void Function() onPressed;
   final String text;
@@ -24,15 +24,16 @@ class ButtonWidget extends StatelessWidget {
       'O': GameColors.kPurple,
     };
 
-    return isEnabled ? colorMap[winner] ?? GameColors.kForeground : GameColors.kGrey;
+    return isEnabled
+        ? colorMap[winner] ?? GameColors.kForeground
+        : GameColors.kGrey;
   }
-
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
-   isEnabled ? onPressed() : null;
+        isEnabled ? onPressed() : null;
       },
       style: ElevatedButton.styleFrom(
         backgroundColor: getColor(isEnabled, winner!),

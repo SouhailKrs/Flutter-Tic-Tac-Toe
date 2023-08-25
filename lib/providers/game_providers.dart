@@ -1,5 +1,3 @@
-
-
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class BoardNotifier extends StateNotifier<List<List<String>>> {
@@ -31,9 +29,9 @@ class WinnerNotifier extends StateNotifier<String> {
 }
 
 final boardProvider = StateNotifierProvider<BoardNotifier, List<List<String>>>(
-        (ref) => BoardNotifier());
+    (ref) => BoardNotifier());
 final currentPlayerProvider =
-StateNotifierProvider<CurrentPlayerNotifier, String>(
+    StateNotifierProvider<CurrentPlayerNotifier, String>(
         (ref) => CurrentPlayerNotifier());
 final winnerProvider =
-StateNotifierProvider<WinnerNotifier, String>((ref) => WinnerNotifier());
+    StateNotifierProvider<WinnerNotifier, String>((ref) => WinnerNotifier());

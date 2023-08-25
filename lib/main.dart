@@ -14,7 +14,7 @@ void main() async {
   Hive.registerAdapter(HistoryModelHiveAdapter());
   await HistoryBox.openBox();
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
-  runApp(const ProviderScope( child: MyApp()));
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -29,9 +29,7 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          home:
-             MainMenu(),
-
+          home: MainMenu(),
         ),
       );
 }
