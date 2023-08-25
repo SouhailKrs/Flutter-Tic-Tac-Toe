@@ -88,7 +88,6 @@ class PlayerNames extends HookWidget {
                 ),
                 buildTextField('Player O', Icons.circle_outlined, false,
                     (value) {
-
                   checkFields();
                 }, playerOController),
                 SizedBox(
@@ -120,14 +119,12 @@ class PlayerNames extends HookWidget {
 
                               return;
                             }
-
-                         // dismiss the keyboard then navigate to the game screen
                             FocusScope.of(context).unfocus(disposition: UnfocusDisposition.previouslyFocusedChild);
 
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => GameScreen(
+                                    builder: (context) => GameBaseScreen(
                                           playerOName: playerOController.text
                                               .toLowerCase()
                                               .trim(),

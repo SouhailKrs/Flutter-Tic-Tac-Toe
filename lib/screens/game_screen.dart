@@ -25,8 +25,8 @@ final currentPlayerProvider =
 final winnerProvider =
     StateNotifierProvider<WinnerNotifier, String>((ref) => WinnerNotifier());
 
-class GameScreen extends HookWidget {
-  const GameScreen({
+class GameBaseScreen extends HookWidget {
+  const GameBaseScreen({
     Key? key,
     required this.playerXName,
     required this.playerOName,
@@ -36,8 +36,8 @@ class GameScreen extends HookWidget {
   final String playerOName;
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
+  Widget build(BuildContext context) =>
+     Scaffold(
       appBar: AppBar(
         backgroundColor: GameColors.kGradient1,
         leading: IconButton(
@@ -62,13 +62,13 @@ class GameScreen extends HookWidget {
         ],
       ),
       body:
-      GameScreenMulti(
+      GameScreen(
           playerXName: playerXName,
           playerOName: playerOName,
+        isAgainstAI: false,
 
       ),
     );
   }
-}
 
 

@@ -4,6 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:sizer/sizer.dart';
 
 import '../game_logic/check_result.dart';
+import '../game_logic/minimax.dart';
 import '../model/history_hive_model.dart';
 import '../storage/history_box.dart';
 import '../theme/colors.dart';
@@ -11,16 +12,19 @@ import '../widgets/alert_dialog.dart';
 import '../widgets/scoreboard.dart';
 import '../widgets/wrapper_container.dart';
 import 'game_screen.dart';
-class GameScreenMulti extends ConsumerWidget {
+class GameScreen extends ConsumerWidget {
   final String playerXName;
   final String playerOName;
+  final bool isAgainstAI; // Add this variable
 
-  const GameScreenMulti({
+  const GameScreen({
     Key? key,
     required this.playerXName,
     required this.playerOName,
-  }) : super(key: key);
+    required this.isAgainstAI, // Initialize it when constructing
 
+  })
+      : super(key: key);
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final board = ref.watch(boardProvider);
@@ -28,7 +32,41 @@ class GameScreenMulti extends ConsumerWidget {
     final winner = ref.watch(winnerProvider);
 
 
+    void makeAIMove(boardNotifier, currentPlayerNotifier, winnerNotifier) {
+      int bestScore = -1000;
+      int bestMoveRow = -1;
+      int bestMoveCol = -1;
 
+      for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+          if (board[i][j].isEmpty) {
+            board[i][j] = 'O';
+            int score = minimax(board, false);
+            board[i][j] = '';
+
+            if (score > bestScore) {
+              bestScore = score;
+              bestMoveRow = i;
+              bestMoveCol = j;
+            }
+          }
+        }
+      }
+
+      if (bestMoveRow != -1 && bestMoveCol != -1) {
+        boardNotifier.updateBoard(bestMoveRow, bestMoveCol, 'O');
+
+        if (checkWin(board, 'O')) {
+          winnerNotifier.updateWinner('O');
+          // Show AI wins dialog
+        } else if (checkDraw(board)) {
+          winnerNotifier.updateWinner('draw');
+          // Show draw dialog
+        } else {
+          currentPlayerNotifier.togglePlayer();
+        }
+      }
+    }
     void onCellTap(int row, int col) {
       final boardNotifier = ref.read(boardProvider.notifier);
       final currentPlayerNotifier = ref.read(currentPlayerProvider.notifier);
@@ -36,39 +74,49 @@ class GameScreenMulti extends ConsumerWidget {
 
       if (board[row][col].isEmpty && winner.isEmpty) {
         final currentPlayerValue = currentPlayer;
-        boardNotifier.updateBoard(row, col, currentPlayerValue);
 
-        if (checkWin(board, currentPlayerValue)) {
-          winnerNotifier.updateWinner(currentPlayerValue);
-          showGameAlertDialog(
-            "Player $currentPlayerValue wins!",
-            context,
-            currentPlayerValue,
-                () => resetGame(currentPlayerValue,ref),
-          );
-          HistoryBox.setHistory(HistoryModelHive(
-            playerXName: playerXName,
-            playerOName: playerOName,
-            winner: currentPlayerValue,
-          ));
-        } else if (checkDraw(board)) {
-          winnerNotifier.updateWinner('draw');
-          showGameAlertDialog(
-            "It's a draw!",
-            context,
-            "draw",
-                () => resetGame(currentPlayerValue,ref),
-          );
-          HistoryBox.setHistory(HistoryModelHive(
-            playerXName: playerXName,
-            playerOName: playerOName,
-            winner: 'draw',
-          ));
-        } else {
-          currentPlayerNotifier.togglePlayer();
+        if (!isAgainstAI || (isAgainstAI && currentPlayerValue == 'X')) {
+          boardNotifier.updateBoard(row, col, currentPlayerValue);
+
+          if (checkWin(board, currentPlayerValue)) {
+            winnerNotifier.updateWinner(currentPlayerValue);
+            showGameAlertDialog(
+              "Player $currentPlayerValue wins!",
+              context,
+              currentPlayerValue,
+                  () => resetGame(currentPlayerValue, ref),
+            );
+            HistoryBox.setHistory(HistoryModelHive(
+              playerXName: playerXName,
+              playerOName: playerOName,
+              winner: currentPlayerValue,
+            ));
+          } else if (checkDraw(board)) {
+            winnerNotifier.updateWinner('draw');
+            showGameAlertDialog(
+              "It's a draw!",
+              context,
+              "draw",
+                  () => resetGame(currentPlayerValue, ref),
+            );
+            HistoryBox.setHistory(HistoryModelHive(
+              playerXName: playerXName,
+              playerOName: playerOName,
+              winner: 'draw',
+            ));
+          } else {
+            currentPlayerNotifier.togglePlayer();
+
+            // If it's against AI and AI's turn
+            if (isAgainstAI && currentPlayerValue == 'X') {
+              makeAIMove(boardNotifier, currentPlayerNotifier, winnerNotifier);
+            }
+          }
         }
       }
     }
+
+
 
     return Scaffold(
       body: WrapperContainer(
