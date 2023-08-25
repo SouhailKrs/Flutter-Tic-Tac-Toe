@@ -10,8 +10,7 @@
 
 The famous Tic Tac Toe game built using Flutter. To enhance the user experience, I implemented Hive
 as the local database, allowing players to view their games later. Additionally, I utilized hooks, a
-flutter implementation of React hooks, to efficiently manage the life-cycle of the Widget and better
-perfomance.
+flutter implementation of React hooks, and Riverpod to efficiently manage the life-cycle of the Widget and state managment.
 
 ## Features
 
@@ -25,6 +24,19 @@ perfomance.
 * **Multiplayer** : Compete against friends, set custom names, and choose "X" or "O" to determine
   the Tic Tac Toe champion!
 * **History** : Easily access the record of your past matches, the history is saved using Hive DB.
+## State Management
+
+In this project, I've utilized two powerful tools for state management in Flutter: Hooks and Riverpod.
+
+* **Hooks**
+
+Inspired by their React counterparts, Hooks offer a functional and reusable approach to constructing components. They facilitate state management, handling side effects, and more – all nestled within your functional Flutter components. By embracing hooks, I've achieved superior code organization and mitigated the intricacies of widget life-cycle management.
+
+* **Riverpod**
+
+Riverpod, a state management library, distinguishes itself through its emphasis on simplicity, performance, and scalability. This library seamlessly integrates into Flutter's ecosystem and furnishes an accessible interface. Employing Riverpod, I've adeptly overseen the application's state, simplifying the management of intricate interplays among distinct components.
+
+Combining Hooks and Riverpod has enabled me to create a cleaner and more efficient architecture for the Tic Tac Toe game, resulting in improved performance and maintainability.
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/SouhailKrs/Flutter-Tic-Tac-Toe/main/lib/screenshots/main_menu.png" width=170>
