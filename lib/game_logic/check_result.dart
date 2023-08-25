@@ -1,3 +1,9 @@
+import 'dart:math';
+
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import '../screens/game_screen.dart';
+
 bool checkWin(List<List<String>> board, String player) {
   for (int i = 0; i < 3; i++) {
     if ((board[i][0] == player &&
@@ -22,3 +28,15 @@ bool checkWin(List<List<String>> board, String player) {
 
 bool checkDraw(List<List<String>> board) =>
     board.every((row) => row.every((cell) => cell.isNotEmpty));
+void resetGame(String currentPlayerValue, WidgetRef ref) {
+  final boardNotifier = ref.read(boardProvider.notifier);
+  final winnerNotifier = ref.read(winnerProvider.notifier);
+
+  boardNotifier.resetBoard();
+  if (winnerNotifier.state == 'draw') {
+    final random = Random();
+    final newCurrentPlayer = ['X', 'O'].elementAt(random.nextInt(2));
+    ref.read(currentPlayerProvider.notifier).state = newCurrentPlayer;
+  }
+  winnerNotifier.updateWinner('');
+}

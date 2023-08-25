@@ -101,6 +101,7 @@ class PlayerNames extends HookWidget {
                       return ButtonWidget(
                           isEnabled: isEnabled,
                           onPressed: () {
+
                             if (playerXController.text.toLowerCase().trim() ==
                                 playerOController.text.toLowerCase().trim()) {
                               ScaffoldMessenger.of(context).showSnackBar(
@@ -119,6 +120,10 @@ class PlayerNames extends HookWidget {
 
                               return;
                             }
+
+                         // dismiss the keyboard then navigate to the game screen
+                            FocusScope.of(context).unfocus(disposition: UnfocusDisposition.previouslyFocusedChild);
+
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
