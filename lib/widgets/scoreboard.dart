@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 
-import '../screens/colors.dart';
+import '../theme/colors.dart';
 
 class ScoreBoard extends StatelessWidget {
   const ScoreBoard({
@@ -20,8 +20,8 @@ class ScoreBoard extends StatelessWidget {
   final String playerXName;
   final String playerOName;
 
-  Widget _buildPlayerScore(String playerLabel, int score, bool isTurn) {
-    return Container(
+  Widget _buildPlayerScore(String playerLabel, int score, bool isTurn) =>
+     Container(
       padding: EdgeInsets.all(5.0.w),
       width: 40.0.w,
       height: 35.0.w,
@@ -64,11 +64,11 @@ class ScoreBoard extends StatelessWidget {
         ],
       ),
     );
-  }
+
 
   @override
-  Widget build(BuildContext context) {
-    return Row(
+  Widget build(BuildContext context) =>
+     Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         _buildPlayerScore(playerXName, playerXScore, isTurn),
@@ -76,4 +76,4 @@ class ScoreBoard extends StatelessWidget {
       ],
     );
   }
-}
+

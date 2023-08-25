@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tic_tac_toe/model/history_hive_model.dart';
-import 'package:flutter_tic_tac_toe/screens/colors.dart';
 import 'package:flutter_tic_tac_toe/storage/history_box.dart';
+import 'package:flutter_tic_tac_toe/theme/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:sizer/sizer.dart';

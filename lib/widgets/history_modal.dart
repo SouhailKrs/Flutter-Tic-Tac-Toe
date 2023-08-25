@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tic_tac_toe/screens/colors.dart';
+import 'package:flutter_tic_tac_toe/theme/colors.dart';
 import 'package:flutter_tic_tac_toe/widgets/history_list.dart';
 import 'package:sizer/sizer.dart';
 

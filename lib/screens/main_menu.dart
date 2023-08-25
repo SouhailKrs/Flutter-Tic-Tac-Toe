@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tic_tac_toe/screens/colors.dart';
 import 'package:flutter_tic_tac_toe/screens/game_screen_single.dart';
 import 'package:flutter_tic_tac_toe/screens/players_names.dart';
+import 'package:flutter_tic_tac_toe/theme/colors.dart';
 import 'package:flutter_tic_tac_toe/widgets/wrapper_container.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
@@ -63,8 +63,8 @@ class MainMenuButtons extends StatelessWidget {
   final void Function() onPressed;
 
   @override
-  Widget build(BuildContext context) {
-    return SizedBox(
+  Widget build(BuildContext context) =>
+     SizedBox(
       width: 60.w,
       height: 8.h,
       child: ElevatedButton(
@@ -87,4 +87,4 @@ class MainMenuButtons extends StatelessWidget {
       ),
     );
   }
-}
+

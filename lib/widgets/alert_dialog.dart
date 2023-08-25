@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../screens/colors.dart';
+import '../theme/colors.dart';
 import 'button_widget.dart';
 
 void showGameAlertDialog(

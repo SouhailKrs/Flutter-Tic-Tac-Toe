@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_tic_tac_toe/screens/colors.dart';
+import 'package:flutter_tic_tac_toe/theme/colors.dart';
 import 'package:flutter_tic_tac_toe/widgets/button_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
@@ -12,8 +12,8 @@ class PlayerNames extends HookWidget {
   const PlayerNames({super.key});
 
   Widget buildTextField(String hintText, IconData icon, bool isX,
-      ValueSetter<String> onChanged, TextEditingController controller) {
-    return TextField(
+      ValueSetter<String> onChanged, TextEditingController controller) =>
+     TextField(
       cursorColor: isX ? GameColors.kWhitish : GameColors.kPurple,
       style: const TextStyle(
         color: GameColors.kWhitish,
@@ -37,7 +37,7 @@ class PlayerNames extends HookWidget {
         ),
       ),
     );
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +81,6 @@ class PlayerNames extends HookWidget {
                   height: 7.h,
                 ),
                 buildTextField('Player X', Icons.close, true, (value) {
-                  print("isEnabled ${isBtnEnabled.value}");
                   checkFields();
                 }, playerXController),
                 SizedBox(
@@ -89,7 +88,6 @@ class PlayerNames extends HookWidget {
                 ),
                 buildTextField('Player O', Icons.circle_outlined, false,
                     (value) {
-                  print("isEnabled ${isBtnEnabled.value}");
 
                   checkFields();
                 }, playerOController),
@@ -103,7 +101,6 @@ class PlayerNames extends HookWidget {
                       return ButtonWidget(
                           isEnabled: isEnabled,
                           onPressed: () {
-                            // check if names are equal
                             if (playerXController.text.toLowerCase().trim() ==
                                 playerOController.text.toLowerCase().trim()) {
                               ScaffoldMessenger.of(context).showSnackBar(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tic_tac_toe/screens/colors.dart';
+import 'package:flutter_tic_tac_toe/theme/colors.dart';
 import 'package:sizer/sizer.dart';
 
 class WrapperContainer extends StatelessWidget {
@@ -8,8 +8,8 @@ class WrapperContainer extends StatelessWidget {
   final Widget child;
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
+  Widget build(BuildContext context) =>
+     Container(
       width: double.infinity,
       height: 100.h,
       padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 5.w),
@@ -27,7 +27,7 @@ class WrapperContainer extends StatelessWidget {
       child: child,
     );
   }
-}
+
 
 Container gradientContainer = Container(
   width: double.infinity,

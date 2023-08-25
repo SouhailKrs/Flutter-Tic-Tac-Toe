@@ -12,7 +12,6 @@ void main() async {
   await Hive.initFlutter((await getApplicationDocumentsDirectory()).path);
   Hive.registerAdapter(HistoryModelHiveAdapter());
   await HistoryBox.openBox();
-
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
   runApp(const MyApp());
 }
@@ -21,10 +20,8 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Sizer(
-      builder: (context, orientation, deviceType) {
-        return MaterialApp(
+  Widget build(BuildContext context) => Sizer(
+        builder: (context, orientation, deviceType) => MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
           theme: ThemeData(
@@ -32,8 +29,6 @@ class MyApp extends StatelessWidget {
             useMaterial3: true,
           ),
           home: const MainMenu(),
-        );
-      },
-    );
-  }
+        ),
+      );
 }

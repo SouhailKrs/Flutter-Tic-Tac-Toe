@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 
-import '../screens/colors.dart';
+import '../theme/colors.dart';
 
 class ButtonWidget extends StatelessWidget {
   const ButtonWidget(
       {super.key,
-      required this.onPressed,
-      required this.text,
-      this.isEnabled = true,
-      this.winner = "draw"});
+        required this.onPressed,
+        required this.text,
+        this.isEnabled = true,
+        this.winner = "draw"});
 
   final void Function() onPressed;
   final String text;
@@ -18,25 +18,21 @@ class ButtonWidget extends StatelessWidget {
   final bool isEnabled;
 
   Color getColor(bool isEnabled, String winner) {
-    if (!isEnabled) {
-      return GameColors.kGrey;
-    } else if (winner == "X") {
-      return GameColors.kBlue;
-    } else if (winner == "O") {
-      return GameColors.kPurple;
-    } else {
-      return GameColors.kForeground;
-    }
+    final colorMap = {
+      false: GameColors.kGrey,
+      'X': GameColors.kBlue,
+      'O': GameColors.kPurple,
+    };
+
+    return isEnabled ? colorMap[winner] ?? GameColors.kForeground : GameColors.kGrey;
   }
+
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
-        if (isEnabled) {
-          onPressed();
-          print("winner is $winner");
-        }
+   isEnabled ? onPressed() : null;
       },
       style: ElevatedButton.styleFrom(
         backgroundColor: getColor(isEnabled, winner!),
@@ -51,7 +47,7 @@ class ButtonWidget extends StatelessWidget {
       child: Text(
         text,
         style: TextStyle(
-          color: Colors.white,
+          color: isEnabled ? GameColors.kWhitish : Colors.black,
           fontFamily: GoogleFonts.permanentMarker().fontFamily,
         ),
       ),

@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_tic_tac_toe/screens/colors.dart';
+import 'package:flutter_tic_tac_toe/theme/colors.dart';
 import 'package:flutter_tic_tac_toe/widgets/wrapper_container.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
@@ -56,29 +56,18 @@ class GameScreenState extends State<GameScreen> {
 
   bool _checkWin(String player) {
     for (int i = 0; i < 3; i++) {
-      if (board[i][0] == player &&
-          board[i][1] == player &&
-          board[i][2] == player) {
-        return true; // Row win
-      }
-      if (board[0][i] == player &&
-          board[1][i] == player &&
-          board[2][i] == player) {
+      if ((board[i][0] == player && board[i][1] == player && board[i][2] == player) ||
+          (board[0][i] == player && board[1][i] == player && board[2][i] == player)) {
         return true;
       }
     }
-    if (board[0][0] == player &&
-        board[1][1] == player &&
-        board[2][2] == player) {
-      return true;
-    }
-    if (board[0][2] == player &&
-        board[1][1] == player &&
-        board[2][0] == player) {
+    if ((board[0][0] == player && board[1][1] == player && board[2][2] == player) ||
+        (board[0][2] == player && board[1][1] == player && board[2][0] == player)) {
       return true;
     }
     return false;
   }
+
 
   bool _checkDraw() {
     for (int i = 0; i < 3; i++) {
@@ -101,8 +90,8 @@ class GameScreenState extends State<GameScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
+  Widget build(BuildContext context) =>
+     Scaffold(
       appBar: AppBar(
         backgroundColor: GameColors.kGradient1,
         leading: IconButton(
@@ -190,4 +179,4 @@ class GameScreenState extends State<GameScreen> {
       ),
     );
   }
-}
+
