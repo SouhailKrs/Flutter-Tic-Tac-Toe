@@ -8,7 +8,7 @@
 
 ## Introduction
 
-The famous Tic Tac Toe game built using Flutter. To enhance the user experience, I implemented Hive
+The classic Tic Tac Toe game built using Flutter. To enhance the user experience, I implemented Hive
 as the local database, allowing players to view their games later. Additionally, I utilized hooks, a
 flutter implementation of React hooks, and Riverpod to efficiently manage the life-cycle of the Widget and state managment.
 
