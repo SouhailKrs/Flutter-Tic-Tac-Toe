@@ -30,14 +30,14 @@ class ScoreBoard extends StatelessWidget {
           borderRadius: BorderRadius.circular(3.0.w),
           border: isTurn
               ? playerLabel == playerXName
-                  ? Border.all(
-                      color: GameColors.kBlue,
-                      width: 2.0,
-                    )
-                  : Border.all(
-                      color: GameColors.kPurple,
-                      width: 2.0,
-                    )
+              ? Border.all(
+            color: GameColors.kBlue,
+            width: 2.0,
+          )
+              : Border.all(
+            color: GameColors.kPurple,
+            width: 2.0,
+          )
               : null,
         ),
         child: Column(
@@ -47,7 +47,9 @@ class ScoreBoard extends StatelessWidget {
               playerLabel,
               style: TextStyle(
                 fontSize: 10.sp,
-                fontFamily: GoogleFonts.permanentMarker().fontFamily,
+                fontFamily: GoogleFonts
+                    .permanentMarker()
+                    .fontFamily,
                 fontWeight: FontWeight.bold,
                 color: playerLabel == playerXName ? Colors.blue : Colors.purple,
               ),
@@ -56,7 +58,9 @@ class ScoreBoard extends StatelessWidget {
               score.toString(),
               style: TextStyle(
                 fontSize: 20,
-                fontFamily: GoogleFonts.caveat().fontFamily,
+                fontFamily: GoogleFonts
+                    .caveat()
+                    .fontFamily,
                 fontWeight: FontWeight.bold,
                 color: GameColors.kWhitish,
               ),
@@ -66,7 +70,8 @@ class ScoreBoard extends StatelessWidget {
       );
 
   @override
-  Widget build(BuildContext context) => Row(
+  Widget build(BuildContext context) =>
+      Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           _buildPlayerScore(playerXName, playerXScore, isTurn),

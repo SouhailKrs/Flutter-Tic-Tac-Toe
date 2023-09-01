@@ -5,12 +5,11 @@ import 'package:sizer/sizer.dart';
 import '../theme/colors.dart';
 
 class ButtonWidget extends StatelessWidget {
-  const ButtonWidget(
-      {super.key,
-      required this.onPressed,
-      required this.text,
-      this.isEnabled = true,
-      this.winner = "draw"});
+  const ButtonWidget({super.key,
+    required this.onPressed,
+    required this.text,
+    this.isEnabled = true,
+    this.winner = "draw"});
 
   final void Function() onPressed;
   final String text;
@@ -49,7 +48,9 @@ class ButtonWidget extends StatelessWidget {
         text,
         style: TextStyle(
           color: isEnabled ? GameColors.kWhitish : Colors.black,
-          fontFamily: GoogleFonts.permanentMarker().fontFamily,
+          fontFamily: GoogleFonts
+              .permanentMarker()
+              .fontFamily,
         ),
       ),
     );
