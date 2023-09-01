@@ -23,7 +23,9 @@ class MainMenu extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 50,
                   fontWeight: FontWeight.bold,
-                  fontFamily: GoogleFonts.permanentMarker().fontFamily,
+                  fontFamily: GoogleFonts
+                      .permanentMarker()
+                      .fontFamily,
                   color: Colors.white,
                 ),
               ),
@@ -34,7 +36,8 @@ class MainMenu extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const GameBaseScreen(
+                      builder: (context) =>
+                      const GameBaseScreen(
                         playerOName: "AI",
                         playerXName: "You",
                         isAgainstAI: true,
@@ -69,7 +72,8 @@ class MainMenuButtons extends StatelessWidget {
   final void Function() onPressed;
 
   @override
-  Widget build(BuildContext context) => SizedBox(
+  Widget build(BuildContext context) =>
+      SizedBox(
         width: 60.w,
         height: 8.h,
         child: ElevatedButton(
@@ -84,7 +88,9 @@ class MainMenuButtons extends StatelessWidget {
             btnText,
             style: TextStyle(
               color: GameColors.kWhitish,
-              fontFamily: GoogleFonts.permanentMarker().fontFamily,
+              fontFamily: GoogleFonts
+                  .permanentMarker()
+                  .fontFamily,
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),

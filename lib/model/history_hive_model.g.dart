@@ -27,8 +27,7 @@ class HistoryModelHiveAdapter extends TypeAdapter<HistoryModelHive> {
   @override
   void write(BinaryWriter writer, HistoryModelHive obj) {
     writer
-      ..writeByte(4)
-      ..writeByte(1)
+      ..writeByte(4)..writeByte(1)
       ..write(obj.playerXName)
       ..writeByte(2)
       ..write(obj.playerOName)
@@ -44,7 +43,7 @@ class HistoryModelHiveAdapter extends TypeAdapter<HistoryModelHive> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is HistoryModelHiveAdapter &&
-          runtimeType == other.runtimeType &&
-          typeId == other.typeId;
+          other is HistoryModelHiveAdapter &&
+              runtimeType == other.runtimeType &&
+              typeId == other.typeId;
 }

@@ -67,7 +67,7 @@ class GameScreen extends ConsumerWidget {
             "AI wins!",
             context,
             'O',
-            () => resetGame('O', ref, isAgainstAI: isAgainstAI),
+                () => resetGame('O', ref, isAgainstAI: isAgainstAI),
           );
         } else if (checkDraw(board)) {
           winnerNotifier.updateWinner('draw');
@@ -75,7 +75,7 @@ class GameScreen extends ConsumerWidget {
             "It's a draw!",
             context,
             'draw',
-            () => resetGame('draw', ref, isAgainstAI: isAgainstAI),
+                () => resetGame('draw', ref, isAgainstAI: isAgainstAI),
           );
         } else {
           currentPlayerNotifier.togglePlayer();
@@ -103,7 +103,7 @@ class GameScreen extends ConsumerWidget {
             "Player $currentPlayerValue wins!",
             context,
             currentPlayerValue,
-            () => resetGame(currentPlayerValue, ref),
+                () => resetGame(currentPlayerValue, ref),
           );
           HistoryBox.setHistory(HistoryModelHive(
             playerXName: playerXName,
@@ -116,7 +116,7 @@ class GameScreen extends ConsumerWidget {
             "It's a draw!",
             context,
             "draw",
-            () => resetGame(currentPlayerValue, ref),
+                () => resetGame(currentPlayerValue, ref),
           );
           HistoryBox.setHistory(HistoryModelHive(
             playerXName: playerXName,
@@ -160,7 +160,7 @@ class GameScreen extends ConsumerWidget {
                     padding: const EdgeInsets.all(5.0),
                     shrinkWrap: true,
                     gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
+                    const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 3,
                       crossAxisSpacing: 10.0,
                       mainAxisSpacing: 10.0,
@@ -188,7 +188,9 @@ class GameScreen extends ConsumerWidget {
                               style: TextStyle(
                                 fontSize: 50,
                                 fontFamily:
-                                    GoogleFonts.permanentMarker().fontFamily,
+                                GoogleFonts
+                                    .permanentMarker()
+                                    .fontFamily,
                                 fontWeight: FontWeight.bold,
                                 color: board[row][col] == 'X'
                                     ? GameColors.kBlue
