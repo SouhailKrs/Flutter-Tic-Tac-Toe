@@ -10,7 +10,7 @@ class WrapperContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Container(
         width: double.infinity,
-        height: 100.h,
+        height: double.infinity,
         padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 5.w),
         decoration: const BoxDecoration(
           gradient: LinearGradient(
