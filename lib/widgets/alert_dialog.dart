@@ -13,20 +13,20 @@ void showGameAlertDialog(
       return AlertDialog(
         backgroundColor: GameColors.kLighterForeground,
         elevation: 0,
-        title: Text(
+        title: const Text(
           "Game Over",
           style: TextStyle(
             color: Colors.white,
             fontSize: 20,
-            fontFamily: GoogleFonts.permanentMarker().fontFamily,
+
           ),
         ),
         content: Text(
           message,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.white,
             fontSize: 20,
-            fontFamily: GoogleFonts.permanentMarker().fontFamily,
+
           ),
         ),
         actions: [

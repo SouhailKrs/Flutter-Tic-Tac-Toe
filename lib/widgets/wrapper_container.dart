@@ -27,17 +27,4 @@ class WrapperContainer extends StatelessWidget {
       );
 }
 
-Container gradientContainer = Container(
-  width: double.infinity,
-  padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 5.w),
-  decoration: const BoxDecoration(
-    gradient: LinearGradient(
-      begin: Alignment.topLeft,
-      end: Alignment.bottomRight,
-      colors: [
-        Color(0xff1e242d),
-        Color(0xff28313D),
-      ],
-    ),
-  ),
-);
+

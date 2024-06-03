@@ -14,6 +14,7 @@ void main() async {
   Hive.registerAdapter(HistoryModelHiveAdapter());
   await HistoryBox.openBox();
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+
   runApp(const ProviderScope(child: MyApp()));
 }
 
@@ -27,9 +28,12 @@ class MyApp extends StatelessWidget {
           title: 'Flutter Tic Tac Toe',
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+            fontFamily: "PermanentMarker",
             useMaterial3: true,
           ),
-          home: const MainMenu(),
+          home: const Scaffold(
+
+              body: MainMenu()),
         ),
       );
 }

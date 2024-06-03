@@ -47,9 +47,6 @@ class ScoreBoard extends StatelessWidget {
               playerLabel,
               style: TextStyle(
                 fontSize: 10.sp,
-                fontFamily: GoogleFonts
-                    .permanentMarker()
-                    .fontFamily,
                 fontWeight: FontWeight.bold,
                 color: playerLabel == playerXName ? Colors.blue : Colors.purple,
               ),

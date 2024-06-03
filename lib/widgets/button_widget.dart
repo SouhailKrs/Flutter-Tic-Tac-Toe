@@ -48,9 +48,6 @@ class ButtonWidget extends StatelessWidget {
         text,
         style: TextStyle(
           color: isEnabled ? GameColors.kWhitish : Colors.black,
-          fontFamily: GoogleFonts
-              .permanentMarker()
-              .fontFamily,
         ),
       ),
     );

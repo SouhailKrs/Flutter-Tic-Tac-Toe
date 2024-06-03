@@ -74,7 +74,7 @@ class PlayerNames extends HookWidget {
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 20.sp,
-                  fontFamily: GoogleFonts.permanentMarker().fontFamily,
+
                 ),
               ),
               SizedBox(
@@ -102,14 +102,13 @@ class PlayerNames extends HookWidget {
                         if (playerXController.text.toLowerCase().trim() ==
                             playerOController.text.toLowerCase().trim()) {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
+                            const SnackBar(
                               backgroundColor: GameColors.kForeground,
                               content: Text(
                                 'Please enter different names',
                                 style: TextStyle(
                                   color: GameColors.kWhitish,
-                                  fontFamily:
-                                      GoogleFonts.permanentMarker().fontFamily,
+
                                 ),
                               ),
                             ),

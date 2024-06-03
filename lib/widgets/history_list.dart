@@ -25,7 +25,7 @@ class HistoryListView extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
-                  fontFamily: GoogleFonts.permanentMarker().fontFamily,
+
                 ),
               ),
             )
@@ -84,9 +84,7 @@ class HistoryListView extends StatelessWidget {
                                         fontSize: 14,
                                         fontWeight: FontWeight.w100,
                                         color: Colors.black,
-                                        fontFamily:
-                                            GoogleFonts.permanentMarker()
-                                                .fontFamily,
+
                                       ),
                                     ),
                                     Row(
@@ -99,9 +97,7 @@ class HistoryListView extends StatelessWidget {
                                             fontSize: 20,
                                             fontWeight: FontWeight.bold,
                                             color: GameColors.kBlue,
-                                            fontFamily:
-                                                GoogleFonts.permanentMarker()
-                                                    .fontFamily,
+
                                           ),
                                         ),
                                         Text(
@@ -109,9 +105,7 @@ class HistoryListView extends StatelessWidget {
                                           style: TextStyle(
                                             fontSize: 30,
                                             fontWeight: FontWeight.bold,
-                                            fontFamily:
-                                                GoogleFonts.permanentMarker()
-                                                    .fontFamily,
+
                                           ),
                                         ),
                                         Text(
@@ -120,9 +114,7 @@ class HistoryListView extends StatelessWidget {
                                             color: GameColors.kPurple,
                                             fontSize: 20,
                                             fontWeight: FontWeight.bold,
-                                            fontFamily:
-                                                GoogleFonts.permanentMarker()
-                                                    .fontFamily,
+
                                           ),
                                         ),
                                       ],

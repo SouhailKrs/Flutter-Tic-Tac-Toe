@@ -12,20 +12,15 @@ class MainMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: WrapperContainer(
+    return  WrapperContainer(
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
+              const Text(
                 'Tic Tac Toe',
                 style: TextStyle(
                   fontSize: 50,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: GoogleFonts
-                      .permanentMarker()
-                      .fontFamily,
                   color: Colors.white,
                 ),
               ),
@@ -59,7 +54,6 @@ class MainMenu extends StatelessWidget {
             ],
           ),
         ),
-      ),
     );
   }
 }
@@ -86,11 +80,8 @@ class MainMenuButtons extends StatelessWidget {
           ),
           child: Text(
             btnText,
-            style: TextStyle(
+            style: const TextStyle(
               color: GameColors.kWhitish,
-              fontFamily: GoogleFonts
-                  .permanentMarker()
-                  .fontFamily,
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
