@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_tic_tac_toe/theme/colors.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../providers/game_providers.dart';
 import '../widgets/history_modal.dart';
 import 'game_screen.dart';
 
-class GameBaseScreen extends HookWidget {
+class GameBaseScreen extends HookConsumerWidget {
   const GameBaseScreen({
     Key? key,
     required this.isAgainstAI,
@@ -18,11 +19,14 @@ class GameBaseScreen extends HookWidget {
   final bool isAgainstAI;
 
   @override
-  Widget build(BuildContext context) => Scaffold(
+  Widget build(BuildContext context, WidgetRef ref) => Scaffold(
         appBar: AppBar(
           backgroundColor: GameColors.kGradient1,
           leading: IconButton(
             onPressed: () {
+              final BoardNotifier boardNotifier =
+                  ref.read(boardProvider.notifier);
+              boardNotifier.resetBoard();
               Navigator.pop(context);
             },
             icon: const Icon(

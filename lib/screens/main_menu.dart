@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tic_tac_toe/screens/players_names_screen.dart';
+import 'package:flutter_tic_tac_toe/theme/app_sizes.dart';
 import 'package:flutter_tic_tac_toe/theme/colors.dart';
 import 'package:flutter_tic_tac_toe/widgets/wrapper_container.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:sizer/sizer.dart';
 
 import 'game_base_screen.dart';
 
@@ -12,48 +11,47 @@ class MainMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  WrapperContainer(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text(
-                'Tic Tac Toe',
-                style: TextStyle(
-                  fontSize: 50,
-                  color: Colors.white,
-                ),
+    return WrapperContainer(
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              'Tic Tac Toe',
+              style: TextStyle(
+                fontSize: 50,
+                color: Colors.white,
               ),
-              SizedBox(height: 15.h),
-              MainMenuButtons(
-                btnText: 'Single Player',
-                onPressed: () {
-                  Navigator.push(
+            ),
+            gap4XL(),
+            MainMenuButtons(
+              btnText: 'Single Player',
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const GameBaseScreen(
+                      playerOName: "AI",
+                      playerXName: "You",
+                      isAgainstAI: true,
+                    ),
+                  ),
+                );
+              },
+            ),
+            gapXL(),
+            MainMenuButtons(
+              btnText: 'Multiplayer',
+              onPressed: () {
+                Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) =>
-                      const GameBaseScreen(
-                        playerOName: "AI",
-                        playerXName: "You",
-                        isAgainstAI: true,
-                      ),
-                    ),
-                  );
-                },
-              ),
-              SizedBox(height: 2.h),
-              MainMenuButtons(
-                btnText: 'Multiplayer',
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const PlayerNames()));
-                },
-              ),
-            ],
-          ),
+                        builder: (context) => const PlayerNames()));
+              },
+            ),
+          ],
         ),
+      ),
     );
   }
 }
@@ -66,14 +64,13 @@ class MainMenuButtons extends StatelessWidget {
   final void Function() onPressed;
 
   @override
-  Widget build(BuildContext context) =>
-      SizedBox(
-        width: 60.w,
-        height: 8.h,
+  Widget build(BuildContext context) => SizedBox(
+        width: MediaQuery.of(context).size.width * 0.8,
         child: ElevatedButton(
           onPressed: onPressed,
           style: ElevatedButton.styleFrom(
             backgroundColor: GameColors.kForeground,
+            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
             ),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tic_tac_toe/theme/colors.dart';
 import 'package:flutter_tic_tac_toe/widgets/history_list.dart';
-import 'package:sizer/sizer.dart';
 
 void buildHistoryBottomSheet(BuildContext context) {
   showModalBottomSheet<void>(
@@ -15,9 +14,9 @@ void buildHistoryBottomSheet(BuildContext context) {
     isScrollControlled: true,
     context: context,
     builder: (context) {
-      return SizedBox(
-        height: 50.h,
-        child: const Padding(
+      return const SizedBox(
+        height: 500,
+        child: Padding(
           padding: EdgeInsets.all(8.0),
           child: HistoryListView(),
         ),

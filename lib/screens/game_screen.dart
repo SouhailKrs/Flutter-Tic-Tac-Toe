@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:sizer/sizer.dart';
 
 import '../game_logic/check_result.dart';
 import '../game_logic/minimax.dart';
@@ -17,7 +16,7 @@ int playerXScore = 0;
 int playerOScore = 0;
 bool isAIPlaying = false;
 
-class GameScreen extends ConsumerWidget {
+class GameScreen extends ConsumerStatefulWidget {
   final String playerXName;
   final String playerOName;
   final bool isAgainstAI;
@@ -30,7 +29,22 @@ class GameScreen extends ConsumerWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<GameScreen> createState() => _GameScreenState();
+}
+
+class _GameScreenState extends ConsumerState<GameScreen> {
+  @override
+  void dispose() {
+    playerXScore = 0;
+    playerOScore = 0;
+    isAIPlaying = false;
+    print('GameScreen disposed');
+
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final board = ref.watch(boardProvider);
     final currentPlayer = ref.watch(currentPlayerProvider);
     final winner = ref.watch(winnerProvider);
@@ -40,7 +54,6 @@ class GameScreen extends ConsumerWidget {
       int bestScore = -1000;
       int bestMoveRow = -1;
       int bestMoveCol = -1;
-
       for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
           if (board[i][j].isEmpty) {
@@ -59,7 +72,6 @@ class GameScreen extends ConsumerWidget {
 
       if (bestMoveRow != -1 && bestMoveCol != -1) {
         boardNotifier.updateBoard(bestMoveRow, bestMoveCol, 'O');
-
         if (checkWin(board, 'O')) {
           winnerNotifier.updateWinner('O');
           playerOScore++;
@@ -67,7 +79,7 @@ class GameScreen extends ConsumerWidget {
             "AI wins!",
             context,
             'O',
-                () => resetGame('O', ref, isAgainstAI: isAgainstAI),
+            () => resetGame('O', ref, isAgainstAI: widget.isAgainstAI),
           );
         } else if (checkDraw(board)) {
           winnerNotifier.updateWinner('draw');
@@ -75,7 +87,7 @@ class GameScreen extends ConsumerWidget {
             "It's a draw!",
             context,
             'draw',
-                () => resetGame('draw', ref, isAgainstAI: isAgainstAI),
+            () => resetGame('draw', ref, isAgainstAI: widget.isAgainstAI),
           );
         } else {
           currentPlayerNotifier.togglePlayer();
@@ -84,6 +96,7 @@ class GameScreen extends ConsumerWidget {
     }
 
     void onCellTap(int row, int col) {
+      if (isAIPlaying) return;
       final boardNotifier = ref.read(boardProvider.notifier);
       final currentPlayerNotifier = ref.read(currentPlayerProvider.notifier);
       final winnerNotifier = ref.read(winnerProvider.notifier);
@@ -103,11 +116,11 @@ class GameScreen extends ConsumerWidget {
             "Player $currentPlayerValue wins!",
             context,
             currentPlayerValue,
-                () => resetGame(currentPlayerValue, ref),
+            () => resetGame(currentPlayerValue, ref),
           );
           HistoryBox.setHistory(HistoryModelHive(
-            playerXName: playerXName,
-            playerOName: playerOName,
+            playerXName: widget.playerXName,
+            playerOName: widget.playerOName,
             winner: currentPlayerValue,
           ));
         } else if (checkDraw(board)) {
@@ -116,16 +129,16 @@ class GameScreen extends ConsumerWidget {
             "It's a draw!",
             context,
             "draw",
-                () => resetGame(currentPlayerValue, ref),
+            () => resetGame(currentPlayerValue, ref),
           );
           HistoryBox.setHistory(HistoryModelHive(
-            playerXName: playerXName,
-            playerOName: playerOName,
+            playerXName: widget.playerXName,
+            playerOName: widget.playerOName,
             winner: 'draw',
           ));
         } else {
           currentPlayerNotifier.togglePlayer();
-          if (isAgainstAI && currentPlayerValue == 'X') {
+          if (widget.isAgainstAI && currentPlayerValue == 'X') {
             isAIPlaying = true;
             Future.delayed(const Duration(milliseconds: 500), () {
               makeAIMove(boardNotifier, currentPlayerNotifier, winnerNotifier,
@@ -141,70 +154,75 @@ class GameScreen extends ConsumerWidget {
       body: WrapperContainer(
         child: Center(
           child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ScoreBoard(
-                  playerXName: playerXName,
-                  playerOName: playerOName,
-                  playerXScore: playerXScore,
-                  playerOScore: playerOScore,
-                  isTurn: currentPlayer == 'X',
-                ),
-                SizedBox(
-                  height: 15.h,
-                ),
-                Container(
-                  margin: EdgeInsets.all(4.0.w),
-                  child: GridView.builder(
-                    padding: const EdgeInsets.all(5.0),
-                    shrinkWrap: true,
-                    gridDelegate:
-                    const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3,
-                      crossAxisSpacing: 10.0,
-                      mainAxisSpacing: 10.0,
+            child: SizedBox(
+              height: MediaQuery.of(context).size.height - kToolbarHeight,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Expanded(
+                    flex: 2,
+                    child: ScoreBoard(
+                      playerXName: widget.playerXName,
+                      playerOName: widget.playerOName,
+                      playerXScore: playerXScore,
+                      playerOScore: playerOScore,
+                      isTurn: currentPlayer == 'X',
                     ),
-                    itemBuilder: (context, index) {
-                      int row = index ~/ 3;
-                      int col = index % 3;
+                  ),
+                  const Spacer(),
+                  Expanded(
+                    flex: 6,
+                    child: Container(
+                      margin: const EdgeInsets.all(16),
+                      child: GridView.builder(
+                        padding: const EdgeInsets.all(5.0),
+                        shrinkWrap: true,
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 3,
+                          crossAxisSpacing: 10.0,
+                          mainAxisSpacing: 10.0,
+                        ),
+                        itemBuilder: (context, index) {
+                          int row = index ~/ 3;
+                          int col = index % 3;
 
-                      return GestureDetector(
-                        onTap: () {
-                          if (!isAIPlaying) {
-                            onCellTap(row, col);
-                          }
-                        },
-                        child: Container(
-                          decoration: const BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(10.0),
-                            ),
-                          ),
-                          child: Center(
-                            child: Text(
-                              board[row][col],
-                              style: TextStyle(
-                                fontSize: 50,
-                                fontFamily:
-                                GoogleFonts
-                                    .permanentMarker()
-                                    .fontFamily,
-                                fontWeight: FontWeight.bold,
-                                color: board[row][col] == 'X'
-                                    ? GameColors.kBlue
-                                    : GameColors.kPurple,
+                          return GestureDetector(
+                            onTap: () {
+                              if (!isAIPlaying) {
+                                onCellTap(row, col);
+                              }
+                            },
+                            child: Container(
+                              decoration: const BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10.0),
+                                ),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  board[row][col],
+                                  style: TextStyle(
+                                    fontSize: 50,
+                                    fontFamily: GoogleFonts.permanentMarker()
+                                        .fontFamily,
+                                    fontWeight: FontWeight.bold,
+                                    color: board[row][col] == 'X'
+                                        ? GameColors.kBlue
+                                        : GameColors.kPurple,
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
-                        ),
-                      );
-                    },
-                    itemCount: 9,
+                          );
+                        },
+                        itemCount: 9,
+                      ),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

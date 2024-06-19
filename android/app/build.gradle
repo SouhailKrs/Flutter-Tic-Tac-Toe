@@ -23,7 +23,6 @@ if (flutterVersionName == null) {
 }
 
 
-
 android {
     namespace "com.tictactoe.flutter_tic_tac_toe"
     compileSdkVersion flutter.compileSdkVersion

@@ -25,12 +25,12 @@ list(APPEND FLUTTER_LIBRARY_HEADERS
         "flutter_messenger.h"
         "flutter_plugin_registrar.h"
         "flutter_texture_registrar.h"
-        )
+)
 list(TRANSFORM FLUTTER_LIBRARY_HEADERS PREPEND "${EPHEMERAL_DIR}/")
 add_library(flutter INTERFACE)
 target_include_directories(flutter INTERFACE
         "${EPHEMERAL_DIR}"
-        )
+)
 target_link_libraries(flutter INTERFACE "${FLUTTER_LIBRARY}.lib")
 add_dependencies(flutter flutter_assemble)
 
@@ -38,23 +38,23 @@ add_dependencies(flutter flutter_assemble)
 list(APPEND CPP_WRAPPER_SOURCES_CORE
         "core_implementations.cc"
         "standard_codec.cc"
-        )
+)
 list(TRANSFORM CPP_WRAPPER_SOURCES_CORE PREPEND "${WRAPPER_ROOT}/")
 list(APPEND CPP_WRAPPER_SOURCES_PLUGIN
         "plugin_registrar.cc"
-        )
+)
 list(TRANSFORM CPP_WRAPPER_SOURCES_PLUGIN PREPEND "${WRAPPER_ROOT}/")
 list(APPEND CPP_WRAPPER_SOURCES_APP
         "flutter_engine.cc"
         "flutter_view_controller.cc"
-        )
+)
 list(TRANSFORM CPP_WRAPPER_SOURCES_APP PREPEND "${WRAPPER_ROOT}/")
 
 # Wrapper sources needed for a plugin.
 add_library(flutter_wrapper_plugin STATIC
         ${CPP_WRAPPER_SOURCES_CORE}
         ${CPP_WRAPPER_SOURCES_PLUGIN}
-        )
+)
 apply_standard_settings(flutter_wrapper_plugin)
 set_target_properties(flutter_wrapper_plugin PROPERTIES
         POSITION_INDEPENDENT_CODE ON)
@@ -63,19 +63,19 @@ set_target_properties(flutter_wrapper_plugin PROPERTIES
 target_link_libraries(flutter_wrapper_plugin PUBLIC flutter)
 target_include_directories(flutter_wrapper_plugin PUBLIC
         "${WRAPPER_ROOT}/include"
-        )
+)
 add_dependencies(flutter_wrapper_plugin flutter_assemble)
 
 # Wrapper sources needed for the runner.
 add_library(flutter_wrapper_app STATIC
         ${CPP_WRAPPER_SOURCES_CORE}
         ${CPP_WRAPPER_SOURCES_APP}
-        )
+)
 apply_standard_settings(flutter_wrapper_app)
 target_link_libraries(flutter_wrapper_app PUBLIC flutter)
 target_include_directories(flutter_wrapper_app PUBLIC
         "${WRAPPER_ROOT}/include"
-        )
+)
 add_dependencies(flutter_wrapper_app flutter_assemble)
 
 # === Flutter tool backend ===
@@ -101,4 +101,4 @@ add_custom_target(flutter_assemble DEPENDS
         ${CPP_WRAPPER_SOURCES_CORE}
         ${CPP_WRAPPER_SOURCES_PLUGIN}
         ${CPP_WRAPPER_SOURCES_APP}
-        )
+)

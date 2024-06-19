@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tic_tac_toe/theme/app_sizes.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sizer/sizer.dart';
 
 import '../theme/colors.dart';
 
@@ -22,22 +22,22 @@ class ScoreBoard extends StatelessWidget {
 
   Widget _buildPlayerScore(String playerLabel, int score, bool isTurn) =>
       Container(
-        padding: EdgeInsets.all(5.0.w),
-        width: 40.0.w,
-        height: 35.0.w,
+        padding: const EdgeInsets.all(16),
+        width: 150,
+        height: 100,
         decoration: BoxDecoration(
           color: GameColors.kForeground,
-          borderRadius: BorderRadius.circular(3.0.w),
+          borderRadius: borderRadiusM(),
           border: isTurn
               ? playerLabel == playerXName
-              ? Border.all(
-            color: GameColors.kBlue,
-            width: 2.0,
-          )
-              : Border.all(
-            color: GameColors.kPurple,
-            width: 2.0,
-          )
+                  ? Border.all(
+                      color: GameColors.kBlue,
+                      width: 2.0,
+                    )
+                  : Border.all(
+                      color: GameColors.kPurple,
+                      width: 2.0,
+                    )
               : null,
         ),
         child: Column(
@@ -46,7 +46,7 @@ class ScoreBoard extends StatelessWidget {
             Text(
               playerLabel,
               style: TextStyle(
-                fontSize: 10.sp,
+                fontSize: 16,
                 fontWeight: FontWeight.bold,
                 color: playerLabel == playerXName ? Colors.blue : Colors.purple,
               ),
@@ -55,9 +55,7 @@ class ScoreBoard extends StatelessWidget {
               score.toString(),
               style: TextStyle(
                 fontSize: 20,
-                fontFamily: GoogleFonts
-                    .caveat()
-                    .fontFamily,
+                fontFamily: GoogleFonts.caveat().fontFamily,
                 fontWeight: FontWeight.bold,
                 color: GameColors.kWhitish,
               ),
@@ -67,8 +65,7 @@ class ScoreBoard extends StatelessWidget {
       );
 
   @override
-  Widget build(BuildContext context) =>
-      Row(
+  Widget build(BuildContext context) => Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           _buildPlayerScore(playerXName, playerXScore, isTurn),

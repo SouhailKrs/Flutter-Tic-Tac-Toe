@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:sizer/sizer.dart';
+import 'package:flutter_tic_tac_toe/theme/app_sizes.dart';
 
 import '../theme/colors.dart';
 
 class ButtonWidget extends StatelessWidget {
-  const ButtonWidget({super.key,
-    required this.onPressed,
-    required this.text,
-    this.isEnabled = true,
-    this.winner = "draw"});
+  const ButtonWidget(
+      {super.key,
+      required this.onPressed,
+      required this.text,
+      this.isEnabled = true,
+      this.winner = "draw"});
 
   final void Function() onPressed;
   final String text;
@@ -36,12 +36,12 @@ class ButtonWidget extends StatelessWidget {
       },
       style: ElevatedButton.styleFrom(
         backgroundColor: getColor(isEnabled, winner!),
-        padding: EdgeInsets.symmetric(
-          vertical: 2.h,
-          horizontal: 5.w,
+        padding: const EdgeInsets.symmetric(
+          vertical: 16,
+          horizontal: 24,
         ),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(3.w),
+          borderRadius: borderRadiusM(),
         ),
       ),
       child: Text(

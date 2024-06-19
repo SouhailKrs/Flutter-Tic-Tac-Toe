@@ -64,7 +64,7 @@ add_executable(${BINARY_NAME}
         "main.cc"
         "my_application.cc"
         "${FLUTTER_MANAGED_DIR}/generated_plugin_registrant.cc"
-        )
+)
 
 # Apply the standard set of build settings. This can be removed for applications
 # that need different build settings.
@@ -84,7 +84,7 @@ add_dependencies(${BINARY_NAME} flutter_assemble)
 set_target_properties(${BINARY_NAME}
         PROPERTIES
         RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/intermediates_do_not_run"
-        )
+)
 
 
 # Generated plugin build rules, which manage building the plugins and adding

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tic_tac_toe/theme/colors.dart';
-import 'package:sizer/sizer.dart';
 
 class WrapperContainer extends StatelessWidget {
   const WrapperContainer({super.key, required this.child});
@@ -11,7 +10,7 @@ class WrapperContainer extends StatelessWidget {
   Widget build(BuildContext context) => Container(
         width: double.infinity,
         height: double.infinity,
-        padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 5.w),
+        padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 16),
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
@@ -26,5 +25,3 @@ class WrapperContainer extends StatelessWidget {
         child: child,
       );
 }
-
-

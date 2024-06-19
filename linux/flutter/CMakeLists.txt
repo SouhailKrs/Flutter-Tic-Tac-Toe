@@ -55,18 +55,18 @@ list(APPEND FLUTTER_LIBRARY_HEADERS
         "fl_value.h"
         "fl_view.h"
         "flutter_linux.h"
-        )
+)
 list_prepend(FLUTTER_LIBRARY_HEADERS "${EPHEMERAL_DIR}/flutter_linux/")
 add_library(flutter INTERFACE)
 target_include_directories(flutter INTERFACE
         "${EPHEMERAL_DIR}"
-        )
+)
 target_link_libraries(flutter INTERFACE "${FLUTTER_LIBRARY}")
 target_link_libraries(flutter INTERFACE
         PkgConfig::GTK
         PkgConfig::GLIB
         PkgConfig::GIO
-        )
+)
 add_dependencies(flutter flutter_assemble)
 
 # === Flutter tool backend ===
@@ -85,4 +85,4 @@ add_custom_command(
 add_custom_target(flutter_assemble DEPENDS
         "${FLUTTER_LIBRARY}"
         ${FLUTTER_LIBRARY_HEADERS}
-        )
+)
