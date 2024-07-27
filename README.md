@@ -12,7 +12,6 @@ The classic Tic Tac Toe game built using Flutter. To enhance the user experience
 as the local database, allowing players to view their games later. Additionally, I utilized hooks, a
 flutter implementation of React hooks, and Riverpod to efficiently manage the life-cycle of the
 Widget and state managment.
-mi
 ## Features
 
 * **Single Player** : Challenge yourself against an AI powered by the ****MiniMax**** algorithm, known for its strategic decision-making in game theory. Experience an engaging gameplay where the AI selects optimal moves, making every match a test of your skills.
